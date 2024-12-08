@@ -1,0 +1,2545 @@
+{
+  "blocks": [
+    {
+      "x": 0,
+      "y": 0,
+      "text": "read_from_keyboard",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 100,
+      "text": "io::stdout().flush().\nexpect(\"flush error\")",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 200,
+      "text": "io::stdin()\n        .read_line(&mut input_text\n)\n        .expect(\"failed to read from stdin\")",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 300,
+      "text": "if let Ok(i) = trimmed.parse::<u32>() ",
+      "width": 120,
+      "height": 60,
+      "type": "Условие",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 400,
+      "text": "return Some(i)",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": -100,
+      "y": 400,
+      "text": "Вывод строки",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": -100,
+      "y": 500,
+      "text": "return None",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 700,
+      "text": "create_and_fill_graph",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 800,
+      "text": "for i in 0..size ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 900,
+      "text": "for j in i..size ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 1000,
+      "text": "if i == j ",
+      "width": 120,
+      "height": 60,
+      "type": "Условие",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 1100,
+      "text": "continue",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 1200,
+      "text": "graf[i][j] = rng\n.gen::<u8>() % 2",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 1300,
+      "text": "graf[j][i] \n= graf[i][j]",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 1400,
+      "text": "if graf[i][j] == 1 ",
+      "width": 120,
+      "height": 60,
+      "type": "Условие",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 1500,
+      "text": "graf_size += 1",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 1600,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 1700,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 1800,
+      "text": "Вывод переменной",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 1900,
+      "text": "return graf",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 2000,
+      "text": "create_incidence_matrix",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 2100,
+      "text": "for i in 0..size ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 2200,
+      "text": "for j in i + 1..size ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 2300,
+      "text": "if adjacency_matrix[i][j] == 1 ",
+      "width": 120,
+      "height": 60,
+      "type": "Условие",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 2400,
+      "text": "incidence_matrix[\ni][edge_index] = 1",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 2500,
+      "text": "incidence_matrix[\nj][edge_index] = 1",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 2600,
+      "text": "edge_index += 1",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 2700,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 2800,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 2900,
+      "text": "return incidence_matrix",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 3000,
+      "text": "determine_graph_size",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 3100,
+      "text": "for row in incidence_matrix ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 3200,
+      "text": "for &value in row ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 3300,
+      "text": "if value == 1 ",
+      "width": 120,
+      "height": 60,
+      "type": "Условие",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 3400,
+      "text": "size += 1",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 3500,
+      "text": "break",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 3600,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 3700,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 3800,
+      "text": "return size",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 3900,
+      "text": "find_isolated_terminal_dominant_vertices",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 4000,
+      "text": "(Vec<usize>, Vec<u\nsize>, Vec<usize>)",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 4100,
+      "text": "(",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 4400,
+      "text": ")",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 4500,
+      "text": "for i in 0..size ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 4600,
+      "text": "for j in 0..size ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 4700,
+      "text": "if adjacency_matrix[i][j] == 1 ",
+      "width": 120,
+      "height": 60,
+      "type": "Условие",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 4800,
+      "text": "count += 1",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 4900,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 5000,
+      "text": "if count == 0 ",
+      "width": 120,
+      "height": 60,
+      "type": "Условие",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 5100,
+      "text": "isolated.push(i)",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 5200,
+      "text": "else if count == 1 ",
+      "width": 120,
+      "height": 60,
+      "type": "Условие",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 5300,
+      "text": "terminal.push(i)",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 5400,
+      "text": "else if count == size - 1 ",
+      "width": 120,
+      "height": 60,
+      "type": "Условие",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 100,
+      "y": 5500,
+      "text": "dominant.push(i)",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 5600,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 5700,
+      "text": "return (isolated, terminal, dominant)",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 5800,
+      "text": "Начало",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 5900,
+      "text": "Вывод строки",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6000,
+      "text": "Вывод строки",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6100,
+      "text": "for row in &graf ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6200,
+      "text": "Вывод переменной",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6300,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6400,
+      "text": "Вывод строки",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6500,
+      "text": "for row in &incidence_matrix ",
+      "width": 120,
+      "height": 60,
+      "type": "Цикл for",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6600,
+      "text": "Вывод переменной",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6700,
+      "text": "iter++",
+      "width": 120,
+      "height": 60,
+      "type": "Блок",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6800,
+      "text": "Вывод переменной",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 6900,
+      "text": "Вывод переменной",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 7000,
+      "text": "Вывод переменной",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 7100,
+      "text": "Вывод переменной",
+      "width": 120,
+      "height": 60,
+      "type": "Ввод / вывод",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    },
+    {
+      "x": 0,
+      "y": 7100,
+      "text": "Конец",
+      "width": 120,
+      "height": 60,
+      "type": "Начало / конец",
+      "isMenuBlock": false,
+      "fontSize": 14,
+      "textHeight": 14,
+      "isBold": false,
+      "isItalic": false,
+      "textAlign": "",
+      "labelsPosition": 1
+    }
+  ],
+  "arrows": [
+    {
+      "startIndex": 0,
+      "endIndex": 1,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 1,
+      "endIndex": 2,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 2,
+      "endIndex": 3,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 3,
+      "endIndex": 4,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 3,
+      "endIndex": 5,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 5,
+      "endIndex": 6,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 7,
+      "endIndex": 8,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 8,
+      "endIndex": 9,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 9,
+      "endIndex": 10,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 10,
+      "endIndex": 11,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 11,
+      "endIndex": 12,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 10,
+      "endIndex": 12,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 12,
+      "endIndex": 13,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 13,
+      "endIndex": 14,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 14,
+      "endIndex": 15,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 15,
+      "endIndex": 16,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 14,
+      "endIndex": 16,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 16,
+      "endIndex": 9,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 1600
+        },
+        {
+          "x": -90,
+          "y": 1600
+        },
+        {
+          "x": -40,
+          "y": 900
+        },
+        {
+          "x": -80,
+          "y": 900
+        },
+        {
+          "x": -60,
+          "y": 900
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 9,
+      "endIndex": 17,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 900
+        },
+        {
+          "x": 180,
+          "y": 900
+        },
+        {
+          "x": 180,
+          "y": 1650
+        },
+        {
+          "x": 0,
+          "y": 1650
+        },
+        {
+          "x": 0,
+          "y": 1670
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 17,
+      "endIndex": 8,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 1700
+        },
+        {
+          "x": -90,
+          "y": 1700
+        },
+        {
+          "x": -60,
+          "y": 800
+        },
+        {
+          "x": -80,
+          "y": 800
+        },
+        {
+          "x": -60,
+          "y": 800
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 8,
+      "endIndex": 18,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 800
+        },
+        {
+          "x": 200,
+          "y": 800
+        },
+        {
+          "x": 200,
+          "y": 1750
+        },
+        {
+          "x": 0,
+          "y": 1750
+        },
+        {
+          "x": 0,
+          "y": 1770
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 18,
+      "endIndex": 19,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 20,
+      "endIndex": 21,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 21,
+      "endIndex": 22,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 22,
+      "endIndex": 23,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 23,
+      "endIndex": 24,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 24,
+      "endIndex": 25,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 25,
+      "endIndex": 26,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 26,
+      "endIndex": 27,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 23,
+      "endIndex": 27,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 27,
+      "endIndex": 22,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 2700
+        },
+        {
+          "x": -90,
+          "y": 2700
+        },
+        {
+          "x": -30,
+          "y": 2200
+        },
+        {
+          "x": -80,
+          "y": 2200
+        },
+        {
+          "x": -60,
+          "y": 2200
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 22,
+      "endIndex": 28,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 2200
+        },
+        {
+          "x": 180,
+          "y": 2200
+        },
+        {
+          "x": 180,
+          "y": 2750
+        },
+        {
+          "x": 0,
+          "y": 2750
+        },
+        {
+          "x": 0,
+          "y": 2770
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 28,
+      "endIndex": 21,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 2800
+        },
+        {
+          "x": -90,
+          "y": 2800
+        },
+        {
+          "x": -50,
+          "y": 2100
+        },
+        {
+          "x": -80,
+          "y": 2100
+        },
+        {
+          "x": -60,
+          "y": 2100
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 21,
+      "endIndex": 29,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 2100
+        },
+        {
+          "x": 200,
+          "y": 2100
+        },
+        {
+          "x": 200,
+          "y": 2850
+        },
+        {
+          "x": 0,
+          "y": 2850
+        },
+        {
+          "x": 0,
+          "y": 2870
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 30,
+      "endIndex": 31,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 31,
+      "endIndex": 32,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 32,
+      "endIndex": 33,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 33,
+      "endIndex": 34,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 34,
+      "endIndex": 35,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 35,
+      "endIndex": 36,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 33,
+      "endIndex": 36,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 36,
+      "endIndex": 32,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 3600
+        },
+        {
+          "x": -90,
+          "y": 3600
+        },
+        {
+          "x": -30,
+          "y": 3200
+        },
+        {
+          "x": -80,
+          "y": 3200
+        },
+        {
+          "x": -60,
+          "y": 3200
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 32,
+      "endIndex": 37,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 3200
+        },
+        {
+          "x": 180,
+          "y": 3200
+        },
+        {
+          "x": 180,
+          "y": 3650
+        },
+        {
+          "x": 0,
+          "y": 3650
+        },
+        {
+          "x": 0,
+          "y": 3670
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 37,
+      "endIndex": 31,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 3700
+        },
+        {
+          "x": -90,
+          "y": 3700
+        },
+        {
+          "x": -50,
+          "y": 3100
+        },
+        {
+          "x": -80,
+          "y": 3100
+        },
+        {
+          "x": -60,
+          "y": 3100
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 31,
+      "endIndex": 38,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 3100
+        },
+        {
+          "x": 200,
+          "y": 3100
+        },
+        {
+          "x": 200,
+          "y": 3750
+        },
+        {
+          "x": 0,
+          "y": 3750
+        },
+        {
+          "x": 0,
+          "y": 3770
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 39,
+      "endIndex": 40,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 40,
+      "endIndex": 41,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 41,
+      "endIndex": 42,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 42,
+      "endIndex": 43,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 43,
+      "endIndex": 44,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 44,
+      "endIndex": 45,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 45,
+      "endIndex": 46,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 46,
+      "endIndex": 47,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 45,
+      "endIndex": 47,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 47,
+      "endIndex": 44,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 4900
+        },
+        {
+          "x": -90,
+          "y": 4900
+        },
+        {
+          "x": -30,
+          "y": 4600
+        },
+        {
+          "x": -80,
+          "y": 4600
+        },
+        {
+          "x": -60,
+          "y": 4600
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 44,
+      "endIndex": 48,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 4600
+        },
+        {
+          "x": 180,
+          "y": 4600
+        },
+        {
+          "x": 180,
+          "y": 4950
+        },
+        {
+          "x": 0,
+          "y": 4950
+        },
+        {
+          "x": 0,
+          "y": 4970
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 48,
+      "endIndex": 49,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 49,
+      "endIndex": 50,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 48,
+      "endIndex": 50,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 50,
+      "endIndex": 51,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 51,
+      "endIndex": 52,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 50,
+      "endIndex": 52,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 52,
+      "endIndex": 53,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 53,
+      "endIndex": 54,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 52,
+      "endIndex": 54,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 54,
+      "endIndex": 43,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 5600
+        },
+        {
+          "x": -90,
+          "y": 5600
+        },
+        {
+          "x": -80,
+          "y": 4500
+        },
+        {
+          "x": -80,
+          "y": 4500
+        },
+        {
+          "x": -60,
+          "y": 4500
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 43,
+      "endIndex": 55,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 4500
+        },
+        {
+          "x": 200,
+          "y": 4500
+        },
+        {
+          "x": 200,
+          "y": 5650
+        },
+        {
+          "x": 0,
+          "y": 5650
+        },
+        {
+          "x": 0,
+          "y": 5670
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 56,
+      "endIndex": 57,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 57,
+      "endIndex": 58,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 58,
+      "endIndex": 59,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 59,
+      "endIndex": 60,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 60,
+      "endIndex": 61,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 61,
+      "endIndex": 59,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 6300
+        },
+        {
+          "x": -90,
+          "y": 6300
+        },
+        {
+          "x": -20,
+          "y": 6100
+        },
+        {
+          "x": -80,
+          "y": 6100
+        },
+        {
+          "x": -60,
+          "y": 6100
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 59,
+      "endIndex": 62,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 6100
+        },
+        {
+          "x": 20,
+          "y": 6100
+        },
+        {
+          "x": 20,
+          "y": 6350
+        },
+        {
+          "x": 0,
+          "y": 6350
+        },
+        {
+          "x": 0,
+          "y": 6370
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 62,
+      "endIndex": 63,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 63,
+      "endIndex": 64,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 64,
+      "endIndex": 65,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 65,
+      "endIndex": 63,
+      "startConnectorIndex": 3,
+      "endConnectorIndex": 3,
+      "nodes": [
+        {
+          "x": -60,
+          "y": 6700
+        },
+        {
+          "x": -90,
+          "y": 6700
+        },
+        {
+          "x": -40,
+          "y": 6500
+        },
+        {
+          "x": -80,
+          "y": 6500
+        },
+        {
+          "x": -60,
+          "y": 6500
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 63,
+      "endIndex": 66,
+      "startConnectorIndex": 1,
+      "endConnectorIndex": 0,
+      "nodes": [
+        {
+          "x": 60,
+          "y": 6500
+        },
+        {
+          "x": 40,
+          "y": 6500
+        },
+        {
+          "x": 40,
+          "y": 6750
+        },
+        {
+          "x": 0,
+          "y": 6750
+        },
+        {
+          "x": 0,
+          "y": 6770
+        }
+      ],
+      "counts": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 66,
+      "endIndex": 67,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 67,
+      "endIndex": 68,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 68,
+      "endIndex": 69,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "startIndex": 69,
+      "endIndex": 70,
+      "startConnectorIndex": 2,
+      "endConnectorIndex": 0,
+      "nodes": [],
+      "counts": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "x0": 0,
+  "y0": 0
+}
