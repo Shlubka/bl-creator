@@ -1,1005 +1,2640 @@
-Processing node: kind=source_file, text=fn new_test() {
-    if g11 {
-        println!("g11");
-        println!("g12");
-        println!("g13");
+Processing node: kind=translation_unit, text=#include <stdio.h>
+
+// Глобальная переменная
+int globalVar = 10;
+
+// Прототипы функций
+void printMessage(const char *message);
+int add(int a, int b);
+void testLoop();
+void testSwitch();
+void testArray();
+void testPointer();
+void testStruct();
+void testComplexIfElse(int value);
+
+int main() {
+    // Локальная переменная
+    int localVar = 20;
+
+    // Вызов функции
+    printMessage("Hello, World!");
+
+    // Арифметические операции
+    int sum = add(5, 3);
+    printf("Sum: %d\n", sum);
+
+    // Условные операторы
+    if (sum > 5) {
+        printf("Sum is greater than 5\n");
     } else {
-        println!("g21");
-        println!("g22");
-        if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
+        printf("Sum is not greater than 5\n");
     }
+
+    // Циклы
+    testLoop();
+
+    // Оператор switch
+    testSwitch();
+
+    // Массивы
+    testArray();
+
+    // Указатели
+    testPointer();
+
+    // Структуры
+    testStruct();
+
+    // Сложная вложенность if-else
+    testComplexIfElse(15);
+
+    return 0;
 }
-/*
-fn only_else_if(value: i32) {
-    if value < 2 {
-        println!("Значение меньше 2.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else {
-        println!("Значение 30 или больше.");
+
+// Определение функции
+void printMessage(const char *message) {
+    printf("%s\n", message);
+}
+
+int add(int a, int b) {
+    return a + b;
+}
+
+void testLoop() {
+    int i;
+    for (i = 0; i < 5; i++) {
+        printf("For loop iteration: %d\n", i);
+    }
+
+    i = 0;
+    while (i < 5) {
+        printf("While loop iteration: %d\n", i);
+        i++;
+    }
+
+    i = 0;
+    /*do {
+        printf("Do-while loop iteration: %d\n", i);
+        i++;
+    } while (i < 5);*/
+}
+
+void testSwitch() {
+    int number = 2;
+    switch (number) {
+        case 1:
+            printf("Number is 1\n");
+            break;
+        case 2:
+            printf("Number is 2\n");
+            break;
+        default:
+            printf("Number is not 1 or 2\n");
     }
 }
 
-fn match_test() {
-    while true {
-        match gg {
-            1 => println!("1"),
-            2 => {
-                println!("2");
-                println!("2");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            4 => {
-                println!("4");
-                println!("4");
-                println!("4");
-                println!("4");
-            }
-            _ => println!("other"),
-        }
+void testArray() {
+    int arr[5] = {1, 2, 3, 4, 5};
+    for (int i = 0; i < 5; i++) {
+        printf("Array element %d: %d\n", i, arr[i]);
     }
-    println!("end");
 }
 
-fn decision_tree(value: i32) {
-    if value < 10 {
-        println!("Значение меньше 10.");
-        if value < 5 {
-            println!("Значение меньше 5.");
-            if value < 2 {
-                println!("Значение меньше 2.");
+void testPointer() {
+    int var = 10;
+    int *ptr = &var;
+    printf("Value of var: %d\n", var);
+    printf("Value of *ptr: %d\n", *ptr);
+    printf("Address of var: %p\n", (void *)&var);
+    printf("Address stored in ptr: %p\n", (void *)ptr);
+}
+
+void testStruct() {
+    struct Point {
+        int x;
+        int y;
+    };
+
+    struct Point p1;
+    p1.x = 10;
+    p1.y = 20;
+
+    printf("Point p1: (%d, %d)\n", p1.x, p1.y);
+}
+
+void testComplexIfElse(int value) {
+    if (value > 10) {
+        if (value % 2 == 0) {
+            if (value > 20) {
+                printf("Value is greater than 20 and even\n");
             } else {
-                println!("Значение от 2 до 5.");
+                printf("Value is between 10 and 20 and even\n");
             }
         } else {
-            println!("Значение от 5 до 10.");
-        }
-    } else if value < 20 {
-        println!("Значение от 10 до 20.");
-        if value < 15 {
-            println!("Значение от 10 до 15.");
-        } else {
-            println!("Значение от 15 до 20.");
-        }
-    } else {
-        println!("Значение 20 или больше.");
-        if value < 30 {
-            println!("Значение от 20 до 30.");
-        } else {
-            println!("Значение 30 или больше.");
-        }
-    }
-}
-
-fn goyda() -> bool {
-    let condition1 = true;
-    let condition2 = true;
-    let condition3 = true;
-    let condition4 = false;
-    let condition6 = false;
-    let condition8 = false;
-
-    if condition1 {
-        println!("statement1");
-        if condition2 {
-            println!("statement2");
-        } else {
-            if condition1 {
-                println!("statement1");
-                if condition2 {
-                    println!("statement2");
-                } else {
-                    println!("statement3");
-                }
-            } else if condition8 {
-                println!("statement4");
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
             } else {
-                println!("statement5");
+                printf("Value is between 10 and 20 and odd\n");
             }
         }
-    } else if condition8 {
-        println!("statement4");
     } else {
-        println!("statement5");
-    }
-
-    return true;
-}
-fn main() -> i32 {
-    let gg = 0;
-
-    for i in 1..10 {
-        println!("all ok");
-    }
-
-    loop {
-        goyda();
-        break; // Добавлено для предотвращения бесконечного цикла
-    }
-
-    while gg < 10 {
-        if condition1 {
-            println!("statement1");
-            if condition2 {
-                println!("statement6");
+        if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
             } else {
-                println!("statement7");
+                printf("Value is less than 5 and even\n");
             }
-        } else if condition8 {
-            println!("statement8");
         } else {
-            println!("statement9");
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
         }
-        break; // Добавлено для предотвращения бесконечного цикла
     }
-
-    return 1;
 }
-*/
 
-Processing node: kind=function_item, text=fn new_test() {
-    if g11 {
-        println!("g11");
-        println!("g12");
-        println!("g13");
+Processing node: kind=preproc_include, text=#include <stdio.h>
+
+Processing node: kind=comment, text=// Глобальная переменная
+Processing node: kind=declaration, text=int globalVar = 10;
+Processing node: kind=comment, text=// Прототипы функций
+Processing node: kind=declaration, text=void printMessage(const char *message);
+Processing node: kind=declaration, text=int add(int a, int b);
+Processing node: kind=declaration, text=void testLoop();
+Processing node: kind=declaration, text=void testSwitch();
+Processing node: kind=declaration, text=void testArray();
+Processing node: kind=declaration, text=void testPointer();
+Processing node: kind=declaration, text=void testStruct();
+Processing node: kind=declaration, text=void testComplexIfElse(int value);
+Processing node: kind=function_definition, text=int main() {
+    // Локальная переменная
+    int localVar = 20;
+
+    // Вызов функции
+    printMessage("Hello, World!");
+
+    // Арифметические операции
+    int sum = add(5, 3);
+    printf("Sum: %d\n", sum);
+
+    // Условные операторы
+    if (sum > 5) {
+        printf("Sum is greater than 5\n");
     } else {
-        println!("g21");
-        println!("g22");
-        if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
+        printf("Sum is not greater than 5\n");
     }
+
+    // Циклы
+    testLoop();
+
+    // Оператор switch
+    testSwitch();
+
+    // Массивы
+    testArray();
+
+    // Указатели
+    testPointer();
+
+    // Структуры
+    testStruct();
+
+    // Сложная вложенность if-else
+    testComplexIfElse(15);
+
+    return 0;
 }
-Processing node: kind=fn, text=fn
-Processing node: kind=identifier, text=new_test
+Processing node: kind=primitive_type, text=int
+Processing node: kind=function_declarator, text=main()
 push to blocks identifier
-8
+6
 push fn
 push local_block
-LocalVecBlock { type: Start, text: "new_test", x: 0, y: 0 }
+LocalVecBlock { type: Start, text: "Начало", x: 0, y: 0 }
 
 add block to y_offset == 0 x_offset = 0
-Processing node: kind=parameters, text=()
-Processing node: kind=block, text={
-    if g11 {
-        println!("g11");
-        println!("g12");
-        println!("g13");
+Processing node: kind=compound_statement, text={
+    // Локальная переменная
+    int localVar = 20;
+
+    // Вызов функции
+    printMessage("Hello, World!");
+
+    // Арифметические операции
+    int sum = add(5, 3);
+    printf("Sum: %d\n", sum);
+
+    // Условные операторы
+    if (sum > 5) {
+        printf("Sum is greater than 5\n");
     } else {
-        println!("g21");
-        println!("g22");
-        if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
+        printf("Sum is not greater than 5\n");
     }
+
+    // Циклы
+    testLoop();
+
+    // Оператор switch
+    testSwitch();
+
+    // Массивы
+    testArray();
+
+    // Указатели
+    testPointer();
+
+    // Структуры
+    testStruct();
+
+    // Сложная вложенность if-else
+    testComplexIfElse(15);
+
+    return 0;
 }
 Processing node: kind={, text={
-Processing node: kind=expression_statement, text=if g11 {
-        println!("g11");
-        println!("g12");
-        println!("g13");
+Processing node: kind=comment, text=// Локальная переменная
+Processing node: kind=declaration, text=int localVar = 20;
+Processing node: kind=comment, text=// Вызов функции
+Processing node: kind=expression_statement, text=printMessage("Hello, World!");
+Processing node: kind=call_expression, text=printMessage("Hello, World!")
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printMessage(\"Hello, World!\")", x: 0, y: 100 }
+
+add block to y_offset == 200 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=comment, text=// Арифметические операции
+Processing node: kind=declaration, text=int sum = add(5, 3);
+Processing node: kind=expression_statement, text=printf("Sum: %d\n", sum);
+Processing node: kind=call_expression, text=printf("Sum: %d\n", sum)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Sum: %d\\n\", sum)", x: 0, y: 200 }
+
+add block to y_offset == 300 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=comment, text=// Условные операторы
+Processing node: kind=if_statement, text=if (sum > 5) {
+        printf("Sum is greater than 5\n");
     } else {
-        println!("g21");
-        println!("g22");
-        if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
-    }
-Processing node: kind=if_expression, text=if g11 {
-        println!("g11");
-        println!("g12");
-        println!("g13");
-    } else {
-        println!("g21");
-        println!("g22");
-        if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
+        printf("Sum is not greater than 5\n");
     }
 push to blocks if_expression
-local coords x:0; y:100
+local coords x:0; y:300
 push if
-text in if: if g11 {
-        println!("g11");
-        println!("g12");
-        println!("g13");
+text in if: if (sum > 5) {
+        printf("Sum is greater than 5\n");
     } else {
-        println!("g21");
-        println!("g22");
-        if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
+        printf("Sum is not greater than 5\n");
     }
-local_offset == 200, else_count = 2, else_if_count == 0
-push to if_else_stack. local x: 0; local y: 100; to x: -200
-push local_block
-LocalVecBlock { type: Condition, text: "if g11 ", x: 0, y: 100 }
-
-Processing node: kind=expression_statement, text=println!("g11");
-Processing node: kind=macro_invocation, text=println!("g11")
-push to blocks macro
-push local_block
-LocalVecBlock { type: Print, text: "println!(\"g11\")", x: 200, y: 200 }
-
-add block to y_offset == 300 x_offset = 200
-Processing node: kind=;, text=;
-Processing node: kind=expression_statement, text=println!("g12");
-Processing node: kind=macro_invocation, text=println!("g12")
-push to blocks macro
-push local_block
-LocalVecBlock { type: Print, text: "println!(\"g12\")", x: 200, y: 300 }
-
-add block to y_offset == 400 x_offset = 200
-Processing node: kind=;, text=;
-Processing node: kind=expression_statement, text=println!("g13");
-Processing node: kind=macro_invocation, text=println!("g13")
-push to blocks macro
-push local_block
-LocalVecBlock { type: Print, text: "println!(\"g13\")", x: 200, y: 400 }
-
-add block to y_offset == 500 x_offset = 200
-Processing node: kind=;, text=;
-Processing node: kind=}, text=}
-Some(If(0, 100, 200))
-len of block mass = 2
-Handling If block at 0:100
-push local_block
-LocalVecBlock { type: End, text: "end if", x: 200, y: 500 }
-
-Processing node: kind=else_clause, text=else {
-        println!("g21");
-        println!("g22");
-        if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
-    }
-push to blocks else_clause
-start in else: else
-text in else_clause: else {
-        println!("g21");
-        println!("g22");
-        if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
-    }
-pop from if_else_stack. it contains [(-200, 100)]
-after pop x: -200; y: 100
-mr penis
-return to in vec x:-200 y:100
-local coords x-200 y:100
-push local_block
-LocalVecBlock { type: Else, text: "mr penis", x: -200, y: -100 }
-
-Processing node: kind=else, text=else
-push to blocks else
-text in else_handler: else
-create else info block
-push local_block
-LocalVecBlock { type: Else, text: "continue", x: -200, y: 200 }
-
-Processing node: kind=block, text={
-        println!("g21");
-        println!("g22");
-        if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
-    }
-Processing node: kind={, text={
-Processing node: kind=expression_statement, text=println!("g21");
-Processing node: kind=macro_invocation, text=println!("g21")
-push to blocks macro
-push local_block
-LocalVecBlock { type: Print, text: "println!(\"g21\")", x: -200, y: 200 }
-
-add block to y_offset == 300 x_offset = -200
-Processing node: kind=;, text=;
-Processing node: kind=expression_statement, text=println!("g22");
-Processing node: kind=macro_invocation, text=println!("g22")
-push to blocks macro
-push local_block
-LocalVecBlock { type: Print, text: "println!(\"g22\")", x: -200, y: 300 }
-
-add block to y_offset == 400 x_offset = -200
-Processing node: kind=;, text=;
-Processing node: kind=expression_statement, text=if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
-Processing node: kind=if_expression, text=if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
-push to blocks if_expression
-local coords x:-200; y:400
-push if
-text in if: if g31 {
-            println!("g31");
-            println!("g32");
-            println!("g33");
-        } else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
 local_offset == 100, else_count = 1, else_if_count == 0
-push to if_else_stack. local x: -200; local y: 400; to x: -300
+push to if_else_stack. local x: 0; local y: 300; to x: -100
 push local_block
-LocalVecBlock { type: Condition, text: "if g31 ", x: -200, y: 400 }
+LocalVecBlock { type: Condition, text: "if (sum > 5) ", x: 0, y: 300 }
 
-Processing node: kind=expression_statement, text=println!("g31");
-Processing node: kind=macro_invocation, text=println!("g31")
+Processing node: kind=expression_statement, text=printf("Sum is greater than 5\n");
+Processing node: kind=call_expression, text=printf("Sum is greater than 5\n")
 push to blocks macro
 push local_block
-LocalVecBlock { type: Print, text: "println!(\"g31\")", x: -100, y: 500 }
+LocalVecBlock { type: Print, text: "printf(\"Sum is greater than 5\\n\")", x: 100, y: 400 }
 
-add block to y_offset == 600 x_offset = -100
-Processing node: kind=;, text=;
-Processing node: kind=expression_statement, text=println!("g32");
-Processing node: kind=macro_invocation, text=println!("g32")
-push to blocks macro
-push local_block
-LocalVecBlock { type: Print, text: "println!(\"g32\")", x: -100, y: 600 }
-
-add block to y_offset == 700 x_offset = -100
-Processing node: kind=;, text=;
-Processing node: kind=expression_statement, text=println!("g33");
-Processing node: kind=macro_invocation, text=println!("g33")
-push to blocks macro
-push local_block
-LocalVecBlock { type: Print, text: "println!(\"g33\")", x: -100, y: 700 }
-
-add block to y_offset == 800 x_offset = -100
+add block to y_offset == 500 x_offset = 100
 Processing node: kind=;, text=;
 Processing node: kind=}, text=}
-Some(If(-200, 400, 100))
-len of block mass = 3
-Handling If block at -200:400
+Some(If(0, 300, 100))
+len of block mass = 2
+Handling If block at 0:300
 push local_block
-LocalVecBlock { type: End, text: "end if", x: -100, y: 800 }
+LocalVecBlock { type: End, text: "end if", x: 100, y: 500 }
 
 Processing node: kind=else_clause, text=else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
+        printf("Sum is not greater than 5\n");
+    }
 push to blocks else_clause
 start in else: else
 text in else_clause: else {
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
-pop from if_else_stack. it contains [(-300, 400)]
-after pop x: -300; y: 400
+        printf("Sum is not greater than 5\n");
+    }
+pop from if_else_stack. it contains [(-100, 300)]
+after pop x: -100; y: 300
 mr penis
-return to in vec x:-300 y:400
-local coords x-300 y:400
+return to in vec x:-100 y:300
+local coords x-100 y:300
 push local_block
-LocalVecBlock { type: Else, text: "mr penis", x: -300, y: 200 }
+LocalVecBlock { type: Else, text: "mr penis", x: -100, y: 100 }
 
 Processing node: kind=else, text=else
 push to blocks else
 text in else_handler: else
 create else info block
 push local_block
-LocalVecBlock { type: Else, text: "continue", x: -300, y: 500 }
+LocalVecBlock { type: Else, text: "continue", x: -100, y: 400 }
 
-Processing node: kind=block, text={
-            println!("g41");
-            println!("g42");
-            println!("g43");
-        }
+Processing node: kind=compound_statement, text={
+        printf("Sum is not greater than 5\n");
+    }
 Processing node: kind={, text={
-Processing node: kind=expression_statement, text=println!("g41");
-Processing node: kind=macro_invocation, text=println!("g41")
+Processing node: kind=expression_statement, text=printf("Sum is not greater than 5\n");
+Processing node: kind=call_expression, text=printf("Sum is not greater than 5\n")
 push to blocks macro
 push local_block
-LocalVecBlock { type: Print, text: "println!(\"g41\")", x: -300, y: 500 }
+LocalVecBlock { type: Print, text: "printf(\"Sum is not greater than 5\\n\")", x: -100, y: 400 }
 
-add block to y_offset == 600 x_offset = -300
-Processing node: kind=;, text=;
-Processing node: kind=expression_statement, text=println!("g42");
-Processing node: kind=macro_invocation, text=println!("g42")
-push to blocks macro
-push local_block
-LocalVecBlock { type: Print, text: "println!(\"g42\")", x: -300, y: 600 }
-
-add block to y_offset == 700 x_offset = -300
-Processing node: kind=;, text=;
-Processing node: kind=expression_statement, text=println!("g43");
-Processing node: kind=macro_invocation, text=println!("g43")
-push to blocks macro
-push local_block
-LocalVecBlock { type: Print, text: "println!(\"g43\")", x: -300, y: 700 }
-
-add block to y_offset == 800 x_offset = -300
+add block to y_offset == 500 x_offset = -100
 Processing node: kind=;, text=;
 Processing node: kind=}, text=}
-Some(Else(-300, 400))
-len of block mass = 3
-pop else
-push local_block
-LocalVecBlock { type: End, text: "end else", x: -300, y: 800 }
-
-Processing node: kind=}, text=}
-Some(Else(-200, 100))
+Some(Else(-100, 300))
 len of block mass = 2
 pop else
 push local_block
-LocalVecBlock { type: End, text: "end else", x: -200, y: 900 }
+LocalVecBlock { type: End, text: "end else", x: -100, y: 500 }
 
+Processing node: kind=comment, text=// Циклы
+Processing node: kind=expression_statement, text=testLoop();
+Processing node: kind=call_expression, text=testLoop()
+push to blocks macro
+push local_block
+LocalVecBlock { type: Action, text: "testLoop()", x: 0, y: 600 }
+
+add block to y_offset == 700 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=comment, text=// Оператор switch
+Processing node: kind=expression_statement, text=testSwitch();
+Processing node: kind=call_expression, text=testSwitch()
+push to blocks macro
+push local_block
+LocalVecBlock { type: Action, text: "testSwitch()", x: 0, y: 700 }
+
+add block to y_offset == 800 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=comment, text=// Массивы
+Processing node: kind=expression_statement, text=testArray();
+Processing node: kind=call_expression, text=testArray()
+push to blocks macro
+push local_block
+LocalVecBlock { type: Action, text: "testArray()", x: 0, y: 800 }
+
+add block to y_offset == 900 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=comment, text=// Указатели
+Processing node: kind=expression_statement, text=testPointer();
+Processing node: kind=call_expression, text=testPointer()
+push to blocks macro
+push local_block
+LocalVecBlock { type: Action, text: "testPointer()", x: 0, y: 900 }
+
+add block to y_offset == 1000 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=comment, text=// Структуры
+Processing node: kind=expression_statement, text=testStruct();
+Processing node: kind=call_expression, text=testStruct()
+push to blocks macro
+push local_block
+LocalVecBlock { type: Action, text: "testStruct()", x: 0, y: 1000 }
+
+add block to y_offset == 1100 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=comment, text=// Сложная вложенность if-else
+Processing node: kind=expression_statement, text=testComplexIfElse(15);
+Processing node: kind=call_expression, text=testComplexIfElse(15)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Action, text: "testComplexIfElse(15)", x: 0, y: 1100 }
+
+add block to y_offset == 1200 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=return_statement, text=return 0;
+push to blocks return
+push return
+push local_block
+LocalVecBlock { type: End, text: "return 0;", x: 0, y: 1200 }
+
+add block to y_offset == 1300 x_offset = 0
+Processing node: kind=}, text=}
+Some(Func)
+len of block mass = 1
+Handling Func block
+skip brecket
+Processing node: kind=comment, text=// Определение функции
+Processing node: kind=function_definition, text=void printMessage(const char *message) {
+    printf("%s\n", message);
+}
+Processing node: kind=primitive_type, text=void
+Processing node: kind=function_declarator, text=printMessage(const char *message)
+push to blocks identifier
+33
+push fn
+push local_block
+LocalVecBlock { type: Start, text: "printMessage(const char *message)", x: 0, y: 1300 }
+
+add block to y_offset == 1300 x_offset = 0
+Processing node: kind=compound_statement, text={
+    printf("%s\n", message);
+}
+Processing node: kind={, text={
+Processing node: kind=expression_statement, text=printf("%s\n", message);
+Processing node: kind=call_expression, text=printf("%s\n", message)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"%s\\n\", message)", x: 0, y: 1400 }
+
+add block to y_offset == 1500 x_offset = 0
+Processing node: kind=;, text=;
 Processing node: kind=}, text=}
 Some(Func)
 len of block mass = 1
 Handling Func block
 push local_block
-LocalVecBlock { type: End, text: "}", x: -100, y: 1000 }
+LocalVecBlock { type: End, text: "}", x: 0, y: 1500 }
 
-Processing node: kind=block_comment, text=/*
-fn only_else_if(value: i32) {
-    if value < 2 {
-        println!("Значение меньше 2.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else if value < 30 {
-        println!("Значение от 20 до 30.");
-    } else {
-        println!("Значение 30 или больше.");
+Processing node: kind=function_definition, text=int add(int a, int b) {
+    return a + b;
+}
+Processing node: kind=primitive_type, text=int
+Processing node: kind=function_declarator, text=add(int a, int b)
+push to blocks identifier
+17
+push fn
+push local_block
+LocalVecBlock { type: Start, text: "add(int a, int b)", x: 0, y: 1600 }
+
+add block to y_offset == 1600 x_offset = 0
+Processing node: kind=compound_statement, text={
+    return a + b;
+}
+Processing node: kind={, text={
+Processing node: kind=return_statement, text=return a + b;
+push to blocks return
+push return
+push local_block
+LocalVecBlock { type: End, text: "return a + b;", x: 0, y: 1700 }
+
+add block to y_offset == 1800 x_offset = 0
+Processing node: kind=}, text=}
+Some(Func)
+len of block mass = 1
+Handling Func block
+skip brecket
+Processing node: kind=function_definition, text=void testLoop() {
+    int i;
+    for (i = 0; i < 5; i++) {
+        printf("For loop iteration: %d\n", i);
+    }
+
+    i = 0;
+    while (i < 5) {
+        printf("While loop iteration: %d\n", i);
+        i++;
+    }
+
+    i = 0;
+    /*do {
+        printf("Do-while loop iteration: %d\n", i);
+        i++;
+    } while (i < 5);*/
+}
+Processing node: kind=primitive_type, text=void
+Processing node: kind=function_declarator, text=testLoop()
+push to blocks identifier
+10
+push fn
+push local_block
+LocalVecBlock { type: Start, text: "testLoop()", x: 0, y: 1800 }
+
+add block to y_offset == 1800 x_offset = 0
+Processing node: kind=compound_statement, text={
+    int i;
+    for (i = 0; i < 5; i++) {
+        printf("For loop iteration: %d\n", i);
+    }
+
+    i = 0;
+    while (i < 5) {
+        printf("While loop iteration: %d\n", i);
+        i++;
+    }
+
+    i = 0;
+    /*do {
+        printf("Do-while loop iteration: %d\n", i);
+        i++;
+    } while (i < 5);*/
+}
+Processing node: kind={, text={
+Processing node: kind=declaration, text=int i;
+Processing node: kind=for_statement, text=for (i = 0; i < 5; i++) {
+        printf("For loop iteration: %d\n", i);
+    }
+push to blocks for
+push for
+push local_block
+LocalVecBlock { type: Cycle, text: "for (i = 0; i < 5; i++) ", x: 0, y: 1900 }
+
+Processing node: kind=expression_statement, text=printf("For loop iteration: %d\n", i);
+Processing node: kind=call_expression, text=printf("For loop iteration: %d\n", i)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"For loop iteration: %d\\n\", i)", x: 0, y: 2000 }
+
+add block to y_offset == 2100 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(For(0, 1900))
+len of block mass = 2
+Handling For block at 0:1900
+push local_block
+LocalVecBlock { type: End, text: "0:1900", x: 0, y: 2100 }
+
+Processing node: kind=expression_statement, text=i = 0;
+Processing node: kind=assignment_expression, text=i = 0
+push to blocks other
+push local_block
+LocalVecBlock { type: Action, text: "i = 0", x: 0, y: 2200 }
+
+Processing node: kind=;, text=;
+Processing node: kind=while_statement, text=while (i < 5) {
+        printf("While loop iteration: %d\n", i);
+        i++;
+    }
+push local_block
+LocalVecBlock { type: Cycle, text: "while (i < 5) ", x: 0, y: 2300 }
+
+Processing node: kind=expression_statement, text=printf("While loop iteration: %d\n", i);
+Processing node: kind=call_expression, text=printf("While loop iteration: %d\n", i)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"While loop iteration: %d\\n\", i)", x: 0, y: 2400 }
+
+add block to y_offset == 2500 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=expression_statement, text=i++;
+Processing node: kind=update_expression, text=i++
+push to blocks other
+push local_block
+LocalVecBlock { type: Action, text: "i++", x: 0, y: 2500 }
+
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(While(0, 2300))
+len of block mass = 2
+Handling While block at 0:2300
+push local_block
+LocalVecBlock { type: End, text: "0:2300", x: 0, y: 2600 }
+
+Processing node: kind=expression_statement, text=i = 0;
+Processing node: kind=assignment_expression, text=i = 0
+push to blocks other
+push local_block
+LocalVecBlock { type: Action, text: "i = 0", x: 0, y: 2700 }
+
+Processing node: kind=;, text=;
+Processing node: kind=comment, text=/*do {
+        printf("Do-while loop iteration: %d\n", i);
+        i++;
+    } while (i < 5);*/
+Processing node: kind=}, text=}
+Some(Func)
+len of block mass = 1
+Handling Func block
+push local_block
+LocalVecBlock { type: End, text: "}", x: 0, y: 2800 }
+
+Processing node: kind=function_definition, text=void testSwitch() {
+    int number = 2;
+    switch (number) {
+        case 1:
+            printf("Number is 1\n");
+            break;
+        case 2:
+            printf("Number is 2\n");
+            break;
+        default:
+            printf("Number is not 1 or 2\n");
     }
 }
+Processing node: kind=primitive_type, text=void
+Processing node: kind=function_declarator, text=testSwitch()
+push to blocks identifier
+12
+push fn
+push local_block
+LocalVecBlock { type: Start, text: "testSwitch()", x: 0, y: 2900 }
 
-fn match_test() {
-    while true {
-        match gg {
-            1 => println!("1"),
-            2 => {
-                println!("2");
-                println!("2");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            3 => {
-                println!("3");
-                println!("3");
-                println!("3");
-            }
-            4 => {
-                println!("4");
-                println!("4");
-                println!("4");
-                println!("4");
-            }
-            _ => println!("other"),
-        }
+add block to y_offset == 2900 x_offset = 0
+Processing node: kind=compound_statement, text={
+    int number = 2;
+    switch (number) {
+        case 1:
+            printf("Number is 1\n");
+            break;
+        case 2:
+            printf("Number is 2\n");
+            break;
+        default:
+            printf("Number is not 1 or 2\n");
     }
-    println!("end");
 }
+Processing node: kind={, text={
+Processing node: kind=declaration, text=int number = 2;
+Processing node: kind=switch_statement, text=switch (number) {
+        case 1:
+            printf("Number is 1\n");
+            break;
+        case 2:
+            printf("Number is 2\n");
+            break;
+        default:
+            printf("Number is not 1 or 2\n");
+    }
+push to blocks match_expression
+push match
+push local_block
+LocalVecBlock { type: Condition, text: "switch (number) ", x: 0, y: 3000 }
 
-fn decision_tree(value: i32) {
-    if value < 10 {
-        println!("Значение меньше 10.");
-        if value < 5 {
-            println!("Значение меньше 5.");
-            if value < 2 {
-                println!("Значение меньше 2.");
+Processing node: kind=switch, text=switch
+push local_block
+LocalVecBlock { type: Action, text: "switch", x: -450, y: 3000 }
+
+Processing node: kind=parenthesized_expression, text=(number)
+push local_block
+LocalVecBlock { type: Action, text: "(number)", x: -450, y: 3100 }
+
+Processing node: kind=(, text=(
+push local_block
+LocalVecBlock { type: Action, text: "(", x: -450, y: 3200 }
+
+Processing node: kind=identifier, text=number
+push local_block
+LocalVecBlock { type: Action, text: "number", x: -450, y: 3300 }
+
+Processing node: kind=), text=)
+push local_block
+LocalVecBlock { type: Action, text: ")", x: -450, y: 3400 }
+
+Processing node: kind=compound_statement, text={
+        case 1:
+            printf("Number is 1\n");
+            break;
+        case 2:
+            printf("Number is 2\n");
+            break;
+        default:
+            printf("Number is not 1 or 2\n");
+    }
+Processing node: kind={, text={
+Processing node: kind=case_statement, text=case 1:
+            printf("Number is 1\n");
+            break;
+push to blocks match
+push local_block
+LocalVecBlock { type: Action, text: "case 1:\n            printf(\"Number is 1\\n\");\n            break;", x: -150, y: 3100 }
+
+Processing node: kind=case_statement, text=case 2:
+            printf("Number is 2\n");
+            break;
+push to blocks match
+push local_block
+LocalVecBlock { type: Action, text: "case 2:\n            printf(\"Number is 2\\n\");\n            break;", x: 150, y: 3100 }
+
+Processing node: kind=case_statement, text=default:
+            printf("Number is not 1 or 2\n");
+push to blocks match
+push local_block
+LocalVecBlock { type: Action, text: "default:\n            printf(\"Number is not 1 or 2\\n\");", x: 450, y: 3100 }
+
+Processing node: kind=}, text=}
+Some(Match(0, 3100, 3))
+len of block mass = 2
+skip pop
+push local_block
+LocalVecBlock { type: EndMatchArm, text: "}", x: 450, y: 3200 }
+
+Processing node: kind=}, text=}
+Some(Match(0, 3100, 2))
+len of block mass = 2
+skip pop
+push local_block
+LocalVecBlock { type: EndMatchArm, text: "}", x: 450, y: 3300 }
+
+Processing node: kind=function_definition, text=void testArray() {
+    int arr[5] = {1, 2, 3, 4, 5};
+    for (int i = 0; i < 5; i++) {
+        printf("Array element %d: %d\n", i, arr[i]);
+    }
+}
+Processing node: kind=primitive_type, text=void
+Processing node: kind=function_declarator, text=testArray()
+push to blocks identifier
+11
+push fn
+push local_block
+LocalVecBlock { type: Start, text: "testArray()", x: 0, y: 3400 }
+
+add block to y_offset == 3400 x_offset = 0
+Processing node: kind=compound_statement, text={
+    int arr[5] = {1, 2, 3, 4, 5};
+    for (int i = 0; i < 5; i++) {
+        printf("Array element %d: %d\n", i, arr[i]);
+    }
+}
+Processing node: kind={, text={
+Processing node: kind=declaration, text=int arr[5] = {1, 2, 3, 4, 5};
+Processing node: kind=for_statement, text=for (int i = 0; i < 5; i++) {
+        printf("Array element %d: %d\n", i, arr[i]);
+    }
+push to blocks for
+push for
+push local_block
+LocalVecBlock { type: Cycle, text: "for (int i = 0; i < 5; i++) ", x: 0, y: 3500 }
+
+Processing node: kind=expression_statement, text=printf("Array element %d: %d\n", i, arr[i]);
+Processing node: kind=call_expression, text=printf("Array element %d: %d\n", i, arr[i])
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Array element %d: %d\\n\", i, arr[i])", x: 0, y: 3600 }
+
+add block to y_offset == 3700 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(For(0, 3500))
+len of block mass = 4
+Handling For block at 0:3500
+push local_block
+LocalVecBlock { type: End, text: "0:3500", x: 0, y: 3700 }
+
+Processing node: kind=}, text=}
+Some(Func)
+len of block mass = 3
+Handling Func block
+push local_block
+LocalVecBlock { type: End, text: "}", x: 0, y: 3800 }
+
+Processing node: kind=function_definition, text=void testPointer() {
+    int var = 10;
+    int *ptr = &var;
+    printf("Value of var: %d\n", var);
+    printf("Value of *ptr: %d\n", *ptr);
+    printf("Address of var: %p\n", (void *)&var);
+    printf("Address stored in ptr: %p\n", (void *)ptr);
+}
+Processing node: kind=primitive_type, text=void
+Processing node: kind=function_declarator, text=testPointer()
+push to blocks identifier
+13
+push fn
+push local_block
+LocalVecBlock { type: Start, text: "testPointer()", x: 0, y: 3900 }
+
+add block to y_offset == 3900 x_offset = 0
+Processing node: kind=compound_statement, text={
+    int var = 10;
+    int *ptr = &var;
+    printf("Value of var: %d\n", var);
+    printf("Value of *ptr: %d\n", *ptr);
+    printf("Address of var: %p\n", (void *)&var);
+    printf("Address stored in ptr: %p\n", (void *)ptr);
+}
+Processing node: kind={, text={
+Processing node: kind=declaration, text=int var = 10;
+Processing node: kind=declaration, text=int *ptr = &var;
+Processing node: kind=expression_statement, text=printf("Value of var: %d\n", var);
+Processing node: kind=call_expression, text=printf("Value of var: %d\n", var)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value of var: %d\\n\", var)", x: 0, y: 4000 }
+
+add block to y_offset == 4100 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=expression_statement, text=printf("Value of *ptr: %d\n", *ptr);
+Processing node: kind=call_expression, text=printf("Value of *ptr: %d\n", *ptr)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value of *ptr: %d\\n\", *ptr)", x: 0, y: 4100 }
+
+add block to y_offset == 4200 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=expression_statement, text=printf("Address of var: %p\n", (void *)&var);
+Processing node: kind=call_expression, text=printf("Address of var: %p\n", (void *)&var)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Address of var: %p\\n\", (void *)&var)", x: 0, y: 4200 }
+
+add block to y_offset == 4300 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=expression_statement, text=printf("Address stored in ptr: %p\n", (void *)ptr);
+Processing node: kind=call_expression, text=printf("Address stored in ptr: %p\n", (void *)ptr)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Address stored in ptr: %p\\n\", (void *)ptr)", x: 0, y: 4300 }
+
+add block to y_offset == 4400 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(Func)
+len of block mass = 3
+Handling Func block
+push local_block
+LocalVecBlock { type: End, text: "}", x: 0, y: 4400 }
+
+Processing node: kind=function_definition, text=void testStruct() {
+    struct Point {
+        int x;
+        int y;
+    };
+
+    struct Point p1;
+    p1.x = 10;
+    p1.y = 20;
+
+    printf("Point p1: (%d, %d)\n", p1.x, p1.y);
+}
+Processing node: kind=primitive_type, text=void
+Processing node: kind=function_declarator, text=testStruct()
+push to blocks identifier
+12
+push fn
+push local_block
+LocalVecBlock { type: Start, text: "testStruct()", x: 0, y: 4500 }
+
+add block to y_offset == 4500 x_offset = 0
+Processing node: kind=compound_statement, text={
+    struct Point {
+        int x;
+        int y;
+    };
+
+    struct Point p1;
+    p1.x = 10;
+    p1.y = 20;
+
+    printf("Point p1: (%d, %d)\n", p1.x, p1.y);
+}
+Processing node: kind={, text={
+Processing node: kind=struct_specifier, text=struct Point {
+        int x;
+        int y;
+    }
+Processing node: kind=;, text=;
+Processing node: kind=declaration, text=struct Point p1;
+Processing node: kind=expression_statement, text=p1.x = 10;
+Processing node: kind=assignment_expression, text=p1.x = 10
+push to blocks other
+push local_block
+LocalVecBlock { type: Action, text: "p1.x = 10", x: 0, y: 4600 }
+
+Processing node: kind=;, text=;
+Processing node: kind=expression_statement, text=p1.y = 20;
+Processing node: kind=assignment_expression, text=p1.y = 20
+push to blocks other
+push local_block
+LocalVecBlock { type: Action, text: "p1.y = 20", x: 0, y: 4700 }
+
+Processing node: kind=;, text=;
+Processing node: kind=expression_statement, text=printf("Point p1: (%d, %d)\n", p1.x, p1.y);
+Processing node: kind=call_expression, text=printf("Point p1: (%d, %d)\n", p1.x, p1.y)
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Point p1: (%d, %d)\\n\", p1.x, p1.y)", x: 0, y: 4800 }
+
+add block to y_offset == 4900 x_offset = 0
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(Func)
+len of block mass = 3
+Handling Func block
+push local_block
+LocalVecBlock { type: End, text: "}", x: 0, y: 4900 }
+
+Processing node: kind=function_definition, text=void testComplexIfElse(int value) {
+    if (value > 10) {
+        if (value % 2 == 0) {
+            if (value > 20) {
+                printf("Value is greater than 20 and even\n");
             } else {
-                println!("Значение от 2 до 5.");
+                printf("Value is between 10 and 20 and even\n");
             }
         } else {
-            println!("Значение от 5 до 10.");
-        }
-    } else if value < 20 {
-        println!("Значение от 10 до 20.");
-        if value < 15 {
-            println!("Значение от 10 до 15.");
-        } else {
-            println!("Значение от 15 до 20.");
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
         }
     } else {
-        println!("Значение 20 или больше.");
-        if value < 30 {
-            println!("Значение от 20 до 30.");
+        if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
         } else {
-            println!("Значение 30 или больше.");
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
         }
     }
 }
+Processing node: kind=primitive_type, text=void
+Processing node: kind=function_declarator, text=testComplexIfElse(int value)
+push to blocks identifier
+28
+push fn
+push local_block
+LocalVecBlock { type: Start, text: "testComplexIfElse(int value)", x: 0, y: 5000 }
 
-fn goyda() -> bool {
-    let condition1 = true;
-    let condition2 = true;
-    let condition3 = true;
-    let condition4 = false;
-    let condition6 = false;
-    let condition8 = false;
-
-    if condition1 {
-        println!("statement1");
-        if condition2 {
-            println!("statement2");
-        } else {
-            if condition1 {
-                println!("statement1");
-                if condition2 {
-                    println!("statement2");
-                } else {
-                    println!("statement3");
-                }
-            } else if condition8 {
-                println!("statement4");
+add block to y_offset == 5000 x_offset = 0
+Processing node: kind=compound_statement, text={
+    if (value > 10) {
+        if (value % 2 == 0) {
+            if (value > 20) {
+                printf("Value is greater than 20 and even\n");
             } else {
-                println!("statement5");
+                printf("Value is between 10 and 20 and even\n");
+            }
+        } else {
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
             }
         }
-    } else if condition8 {
-        println!("statement4");
     } else {
-        println!("statement5");
-    }
-
-    return true;
-}
-fn main() -> i32 {
-    let gg = 0;
-
-    for i in 1..10 {
-        println!("all ok");
-    }
-
-    loop {
-        goyda();
-        break; // Добавлено для предотвращения бесконечного цикла
-    }
-
-    while gg < 10 {
-        if condition1 {
-            println!("statement1");
-            if condition2 {
-                println!("statement6");
+        if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
             } else {
-                println!("statement7");
+                printf("Value is less than 5 and even\n");
             }
-        } else if condition8 {
-            println!("statement8");
         } else {
-            println!("statement9");
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
         }
-        break; // Добавлено для предотвращения бесконечного цикла
     }
-
-    return 1;
 }
-*/
+Processing node: kind={, text={
+Processing node: kind=if_statement, text=if (value > 10) {
+        if (value % 2 == 0) {
+            if (value > 20) {
+                printf("Value is greater than 20 and even\n");
+            } else {
+                printf("Value is between 10 and 20 and even\n");
+            }
+        } else {
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+        }
+    } else {
+        if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
+        } else {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+    }
+push to blocks if_expression
+local coords x:0; y:5100
+push if
+text in if: if (value > 10) {
+        if (value % 2 == 0) {
+            if (value > 20) {
+                printf("Value is greater than 20 and even\n");
+            } else {
+                printf("Value is between 10 and 20 and even\n");
+            }
+        } else {
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+        }
+    } else {
+        if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
+        } else {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+    }
+local_offset == 700, else_count = 7, else_if_count == 0
+push to if_else_stack. local x: 0; local y: 5100; to x: -700
+push local_block
+LocalVecBlock { type: Condition, text: "if (value > 10) ", x: 0, y: 5100 }
+
+Processing node: kind=if_statement, text=if (value % 2 == 0) {
+            if (value > 20) {
+                printf("Value is greater than 20 and even\n");
+            } else {
+                printf("Value is between 10 and 20 and even\n");
+            }
+        } else {
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+        }
+push to blocks if_expression
+local coords x:700; y:5200
+push if
+text in if: if (value % 2 == 0) {
+            if (value > 20) {
+                printf("Value is greater than 20 and even\n");
+            } else {
+                printf("Value is between 10 and 20 and even\n");
+            }
+        } else {
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+        }
+local_offset == 300, else_count = 3, else_if_count == 0
+push to if_else_stack. local x: 700; local y: 5200; to x: 400
+push local_block
+LocalVecBlock { type: Condition, text: "if (value % 2 == 0) ", x: 700, y: 5200 }
+
+Processing node: kind=if_statement, text=if (value > 20) {
+                printf("Value is greater than 20 and even\n");
+            } else {
+                printf("Value is between 10 and 20 and even\n");
+            }
+push to blocks if_expression
+local coords x:1000; y:5300
+push if
+text in if: if (value > 20) {
+                printf("Value is greater than 20 and even\n");
+            } else {
+                printf("Value is between 10 and 20 and even\n");
+            }
+local_offset == 100, else_count = 1, else_if_count == 0
+push to if_else_stack. local x: 1000; local y: 5300; to x: 900
+it have 20
+push local_block
+LocalVecBlock { type: Condition, text: "if (value > 20) ", x: 1000, y: 5300 }
+
+Processing node: kind=expression_statement, text=printf("Value is greater than 20 and even\n");
+Processing node: kind=call_expression, text=printf("Value is greater than 20 and even\n")
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value is greater than 20 and even\\n\")", x: 1100, y: 5400 }
+
+add block to y_offset == 5500 x_offset = 1100
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(If(1000, 5300, 100))
+len of block mass = 6
+Handling If block at 1000:5300
+push local_block
+LocalVecBlock { type: End, text: "end if", x: 1100, y: 5500 }
+
+Processing node: kind=else_clause, text=else {
+                printf("Value is between 10 and 20 and even\n");
+            }
+push to blocks else_clause
+start in else: else
+text in else_clause: else {
+                printf("Value is between 10 and 20 and even\n");
+            }
+pop from if_else_stack. it contains [(-700, 5100), (400, 5200), (900, 5300)]
+after pop x: 900; y: 5300
+mr penis
+return to in vec x:900 y:5300
+local coords x900 y:5300
+push local_block
+LocalVecBlock { type: Else, text: "mr penis", x: 900, y: 5100 }
+
+Processing node: kind=else, text=else
+push to blocks else
+text in else_handler: else
+create else info block
+push local_block
+LocalVecBlock { type: Else, text: "continue", x: 900, y: 5400 }
+
+Processing node: kind=compound_statement, text={
+                printf("Value is between 10 and 20 and even\n");
+            }
+Processing node: kind={, text={
+Processing node: kind=expression_statement, text=printf("Value is between 10 and 20 and even\n");
+Processing node: kind=call_expression, text=printf("Value is between 10 and 20 and even\n")
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value is between 10 and 20 and even\\n\")", x: 900, y: 5400 }
+
+add block to y_offset == 5500 x_offset = 900
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(Else(900, 5300))
+len of block mass = 6
+pop else
+push local_block
+LocalVecBlock { type: End, text: "end else", x: 900, y: 5500 }
+
+Processing node: kind=}, text=}
+Some(If(700, 5200, 300))
+len of block mass = 5
+Handling If block at 700:5200
+push local_block
+LocalVecBlock { type: End, text: "end if", x: 1000, y: 5600 }
+
+Processing node: kind=else_clause, text=else {
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+        }
+push to blocks else_clause
+start in else: else
+text in else_clause: else {
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+        }
+pop from if_else_stack. it contains [(-700, 5100), (400, 5200)]
+after pop x: 400; y: 5200
+mr penis
+return to in vec x:400 y:5200
+local coords x400 y:5200
+push local_block
+LocalVecBlock { type: Else, text: "mr penis", x: 400, y: 5000 }
+
+Processing node: kind=else, text=else
+push to blocks else
+text in else_handler: else
+create else info block
+push local_block
+LocalVecBlock { type: Else, text: "continue", x: 400, y: 5300 }
+
+Processing node: kind=compound_statement, text={
+            if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+        }
+Processing node: kind={, text={
+Processing node: kind=if_statement, text=if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+push to blocks if_expression
+local coords x:400; y:5300
+push if
+text in if: if (value > 20) {
+                printf("Value is greater than 20 and odd\n");
+            } else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+local_offset == 100, else_count = 1, else_if_count == 0
+push to if_else_stack. local x: 400; local y: 5300; to x: 300
+it have 20
+push local_block
+LocalVecBlock { type: Condition, text: "if (value > 20) ", x: 400, y: 5300 }
+
+Processing node: kind=expression_statement, text=printf("Value is greater than 20 and odd\n");
+Processing node: kind=call_expression, text=printf("Value is greater than 20 and odd\n")
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value is greater than 20 and odd\\n\")", x: 500, y: 5400 }
+
+add block to y_offset == 5500 x_offset = 500
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(If(400, 5300, 100))
+len of block mass = 6
+Handling If block at 400:5300
+push local_block
+LocalVecBlock { type: End, text: "end if", x: 500, y: 5500 }
+
+Processing node: kind=else_clause, text=else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+push to blocks else_clause
+start in else: else
+text in else_clause: else {
+                printf("Value is between 10 and 20 and odd\n");
+            }
+pop from if_else_stack. it contains [(-700, 5100), (300, 5300)]
+after pop x: 300; y: 5300
+mr penis
+return to in vec x:300 y:5300
+local coords x300 y:5300
+push local_block
+LocalVecBlock { type: Else, text: "mr penis", x: 300, y: 5100 }
+
+Processing node: kind=else, text=else
+push to blocks else
+text in else_handler: else
+create else info block
+push local_block
+LocalVecBlock { type: Else, text: "continue", x: 300, y: 5400 }
+
+Processing node: kind=compound_statement, text={
+                printf("Value is between 10 and 20 and odd\n");
+            }
+Processing node: kind={, text={
+Processing node: kind=expression_statement, text=printf("Value is between 10 and 20 and odd\n");
+Processing node: kind=call_expression, text=printf("Value is between 10 and 20 and odd\n")
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value is between 10 and 20 and odd\\n\")", x: 300, y: 5400 }
+
+add block to y_offset == 5500 x_offset = 300
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(Else(300, 5300))
+len of block mass = 6
+pop else
+push local_block
+LocalVecBlock { type: End, text: "end else", x: 300, y: 5500 }
+
+Processing node: kind=}, text=}
+Some(Else(400, 5200))
+len of block mass = 5
+pop else
+push local_block
+LocalVecBlock { type: End, text: "end else", x: 400, y: 5600 }
+
+Processing node: kind=}, text=}
+Some(If(0, 5100, 700))
+len of block mass = 4
+Handling If block at 0:5100
+push local_block
+LocalVecBlock { type: End, text: "end if", x: 500, y: 5700 }
+
+Processing node: kind=else_clause, text=else {
+        if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
+        } else {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+    }
+push to blocks else_clause
+start in else: else
+text in else_clause: else {
+        if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
+        } else {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+    }
+pop from if_else_stack. it contains [(-700, 5100)]
+after pop x: -700; y: 5100
+mr penis
+return to in vec x:-700 y:5100
+local coords x-700 y:5100
+push local_block
+LocalVecBlock { type: Else, text: "mr penis", x: -700, y: 4900 }
+
+Processing node: kind=else, text=else
+push to blocks else
+text in else_handler: else
+create else info block
+push local_block
+LocalVecBlock { type: Else, text: "continue", x: -700, y: 5200 }
+
+Processing node: kind=compound_statement, text={
+        if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
+        } else {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+    }
+Processing node: kind={, text={
+Processing node: kind=if_statement, text=if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
+        } else {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+push to blocks if_expression
+local coords x:-700; y:5200
+push if
+text in if: if (value % 2 == 0) {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
+        } else {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+local_offset == 300, else_count = 3, else_if_count == 0
+push to if_else_stack. local x: -700; local y: 5200; to x: -1000
+push local_block
+LocalVecBlock { type: Condition, text: "if (value % 2 == 0) ", x: -700, y: 5200 }
+
+Processing node: kind=if_statement, text=if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
+push to blocks if_expression
+local coords x:-400; y:5300
+push if
+text in if: if (value > 5) {
+                printf("Value is between 5 and 10 and even\n");
+            } else {
+                printf("Value is less than 5 and even\n");
+            }
+local_offset == 100, else_count = 1, else_if_count == 0
+push to if_else_stack. local x: -400; local y: 5300; to x: -500
+push local_block
+LocalVecBlock { type: Condition, text: "if (value > 5) ", x: -400, y: 5300 }
+
+Processing node: kind=expression_statement, text=printf("Value is between 5 and 10 and even\n");
+Processing node: kind=call_expression, text=printf("Value is between 5 and 10 and even\n")
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value is between 5 and 10 and even\\n\")", x: -300, y: 5400 }
+
+add block to y_offset == 5500 x_offset = -300
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(If(-400, 5300, 100))
+len of block mass = 6
+Handling If block at -400:5300
+push local_block
+LocalVecBlock { type: End, text: "end if", x: -300, y: 5500 }
+
+Processing node: kind=else_clause, text=else {
+                printf("Value is less than 5 and even\n");
+            }
+push to blocks else_clause
+start in else: else
+text in else_clause: else {
+                printf("Value is less than 5 and even\n");
+            }
+pop from if_else_stack. it contains [(-1000, 5200), (-500, 5300)]
+after pop x: -500; y: 5300
+mr penis
+return to in vec x:-500 y:5300
+local coords x-500 y:5300
+push local_block
+LocalVecBlock { type: Else, text: "mr penis", x: -500, y: 5100 }
+
+Processing node: kind=else, text=else
+push to blocks else
+text in else_handler: else
+create else info block
+push local_block
+LocalVecBlock { type: Else, text: "continue", x: -500, y: 5400 }
+
+Processing node: kind=compound_statement, text={
+                printf("Value is less than 5 and even\n");
+            }
+Processing node: kind={, text={
+Processing node: kind=expression_statement, text=printf("Value is less than 5 and even\n");
+Processing node: kind=call_expression, text=printf("Value is less than 5 and even\n")
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value is less than 5 and even\\n\")", x: -500, y: 5400 }
+
+add block to y_offset == 5500 x_offset = -500
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(Else(-500, 5300))
+len of block mass = 6
+pop else
+push local_block
+LocalVecBlock { type: End, text: "end else", x: -500, y: 5500 }
+
+Processing node: kind=}, text=}
+Some(If(-700, 5200, 300))
+len of block mass = 5
+Handling If block at -700:5200
+push local_block
+LocalVecBlock { type: End, text: "end if", x: -400, y: 5600 }
+
+Processing node: kind=else_clause, text=else {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+push to blocks else_clause
+start in else: else
+text in else_clause: else {
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+pop from if_else_stack. it contains [(-1000, 5200)]
+after pop x: -1000; y: 5200
+mr penis
+return to in vec x:-1000 y:5200
+local coords x-1000 y:5200
+push local_block
+LocalVecBlock { type: Else, text: "mr penis", x: -1000, y: 5000 }
+
+Processing node: kind=else, text=else
+push to blocks else
+text in else_handler: else
+create else info block
+push local_block
+LocalVecBlock { type: Else, text: "continue", x: -1000, y: 5300 }
+
+Processing node: kind=compound_statement, text={
+            if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+        }
+Processing node: kind={, text={
+Processing node: kind=if_statement, text=if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+push to blocks if_expression
+local coords x:-1000; y:5300
+push if
+text in if: if (value > 5) {
+                printf("Value is between 5 and 10 and odd\n");
+            } else {
+                printf("Value is less than 5 and odd\n");
+            }
+local_offset == 100, else_count = 1, else_if_count == 0
+push to if_else_stack. local x: -1000; local y: 5300; to x: -1100
+push local_block
+LocalVecBlock { type: Condition, text: "if (value > 5) ", x: -1000, y: 5300 }
+
+Processing node: kind=expression_statement, text=printf("Value is between 5 and 10 and odd\n");
+Processing node: kind=call_expression, text=printf("Value is between 5 and 10 and odd\n")
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value is between 5 and 10 and odd\\n\")", x: -900, y: 5400 }
+
+add block to y_offset == 5500 x_offset = -900
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(If(-1000, 5300, 100))
+len of block mass = 6
+Handling If block at -1000:5300
+push local_block
+LocalVecBlock { type: End, text: "end if", x: -900, y: 5500 }
+
+Processing node: kind=else_clause, text=else {
+                printf("Value is less than 5 and odd\n");
+            }
+push to blocks else_clause
+start in else: else
+text in else_clause: else {
+                printf("Value is less than 5 and odd\n");
+            }
+pop from if_else_stack. it contains [(-1100, 5300)]
+after pop x: -1100; y: 5300
+mr penis
+return to in vec x:-1100 y:5300
+local coords x-1100 y:5300
+push local_block
+LocalVecBlock { type: Else, text: "mr penis", x: -1100, y: 5100 }
+
+Processing node: kind=else, text=else
+push to blocks else
+text in else_handler: else
+create else info block
+push local_block
+LocalVecBlock { type: Else, text: "continue", x: -1100, y: 5400 }
+
+Processing node: kind=compound_statement, text={
+                printf("Value is less than 5 and odd\n");
+            }
+Processing node: kind={, text={
+Processing node: kind=expression_statement, text=printf("Value is less than 5 and odd\n");
+Processing node: kind=call_expression, text=printf("Value is less than 5 and odd\n")
+push to blocks macro
+push local_block
+LocalVecBlock { type: Print, text: "printf(\"Value is less than 5 and odd\\n\")", x: -1100, y: 5400 }
+
+add block to y_offset == 5500 x_offset = -1100
+Processing node: kind=;, text=;
+Processing node: kind=}, text=}
+Some(Else(-1100, 5300))
+len of block mass = 6
+pop else
+push local_block
+LocalVecBlock { type: End, text: "end else", x: -1100, y: 5500 }
+
+Processing node: kind=}, text=}
+Some(Else(-1000, 5200))
+len of block mass = 5
+pop else
+push local_block
+LocalVecBlock { type: End, text: "end else", x: -1000, y: 5600 }
+
+Processing node: kind=}, text=}
+Some(Else(-700, 5100))
+len of block mass = 4
+pop else
+push local_block
+LocalVecBlock { type: End, text: "end else", x: -900, y: 5700 }
+
+Processing node: kind=}, text=}
+Some(Func)
+len of block mass = 3
+Handling Func block
+push local_block
+LocalVecBlock { type: End, text: "}", x: -800, y: 5800 }
+
 Final block vector: [
     LocalVecBlock {
         type: Start,
-        text: "new_test",
+        text: "Начало",
         x: 0,
         y: 0,
     },
     LocalVecBlock {
-        type: Condition,
-        text: "if g11 ",
+        type: Print,
+        text: "printMessage(\"Hello, World!\")",
         x: 0,
         y: 100,
     },
     LocalVecBlock {
         type: Print,
-        text: "println!(\"g11\")",
-        x: 200,
+        text: "printf(\"Sum: %d\\n\", sum)",
+        x: 0,
         y: 200,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "println!(\"g12\")",
-        x: 200,
-        y: 300,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "println!(\"g13\")",
-        x: 200,
-        y: 400,
-    },
-    LocalVecBlock {
-        type: End,
-        text: "end if",
-        x: 200,
-        y: 500,
-    },
-    LocalVecBlock {
-        type: Else,
-        text: "mr penis",
-        x: -200,
-        y: -100,
-    },
-    LocalVecBlock {
-        type: Else,
-        text: "continue",
-        x: -200,
-        y: 200,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "println!(\"g21\")",
-        x: -200,
-        y: 200,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "println!(\"g22\")",
-        x: -200,
-        y: 300,
     },
     LocalVecBlock {
         type: Condition,
-        text: "if g31 ",
-        x: -200,
+        text: "if (sum > 5) ",
+        x: 0,
+        y: 300,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Sum is greater than 5\\n\")",
+        x: 100,
         y: 400,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "println!(\"g31\")",
-        x: -100,
-        y: 500,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "println!(\"g32\")",
-        x: -100,
-        y: 600,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "println!(\"g33\")",
-        x: -100,
-        y: 700,
     },
     LocalVecBlock {
         type: End,
         text: "end if",
-        x: -100,
-        y: 800,
+        x: 100,
+        y: 500,
     },
     LocalVecBlock {
         type: Else,
         text: "mr penis",
-        x: -300,
-        y: 200,
+        x: -100,
+        y: 100,
     },
     LocalVecBlock {
         type: Else,
         text: "continue",
-        x: -300,
-        y: 500,
+        x: -100,
+        y: 400,
     },
     LocalVecBlock {
         type: Print,
-        text: "println!(\"g41\")",
-        x: -300,
+        text: "printf(\"Sum is not greater than 5\\n\")",
+        x: -100,
+        y: 400,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end else",
+        x: -100,
         y: 500,
     },
     LocalVecBlock {
-        type: Print,
-        text: "println!(\"g42\")",
-        x: -300,
+        type: Action,
+        text: "testLoop()",
+        x: 0,
         y: 600,
     },
     LocalVecBlock {
-        type: Print,
-        text: "println!(\"g43\")",
-        x: -300,
+        type: Action,
+        text: "testSwitch()",
+        x: 0,
         y: 700,
     },
     LocalVecBlock {
-        type: End,
-        text: "end else",
-        x: -300,
+        type: Action,
+        text: "testArray()",
+        x: 0,
         y: 800,
     },
     LocalVecBlock {
-        type: End,
-        text: "end else",
-        x: -200,
+        type: Action,
+        text: "testPointer()",
+        x: 0,
         y: 900,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "testStruct()",
+        x: 0,
+        y: 1000,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "testComplexIfElse(15)",
+        x: 0,
+        y: 1100,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "return 0;",
+        x: 0,
+        y: 1200,
+    },
+    LocalVecBlock {
+        type: Start,
+        text: "printMessage(const char *message)",
+        x: 0,
+        y: 1300,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"%s\\n\", message)",
+        x: 0,
+        y: 1400,
     },
     LocalVecBlock {
         type: End,
         text: "}",
-        x: -100,
-        y: 1000,
+        x: 0,
+        y: 1500,
+    },
+    LocalVecBlock {
+        type: Start,
+        text: "add(int a, int b)",
+        x: 0,
+        y: 1600,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "return a + b;",
+        x: 0,
+        y: 1700,
+    },
+    LocalVecBlock {
+        type: Start,
+        text: "testLoop()",
+        x: 0,
+        y: 1800,
+    },
+    LocalVecBlock {
+        type: Cycle,
+        text: "for (i = 0; i < 5; i++) ",
+        x: 0,
+        y: 1900,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"For loop iteration: %d\\n\", i)",
+        x: 0,
+        y: 2000,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "0:1900",
+        x: 0,
+        y: 2100,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "i = 0",
+        x: 0,
+        y: 2200,
+    },
+    LocalVecBlock {
+        type: Cycle,
+        text: "while (i < 5) ",
+        x: 0,
+        y: 2300,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"While loop iteration: %d\\n\", i)",
+        x: 0,
+        y: 2400,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "i++",
+        x: 0,
+        y: 2500,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "0:2300",
+        x: 0,
+        y: 2600,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "i = 0",
+        x: 0,
+        y: 2700,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "}",
+        x: 0,
+        y: 2800,
+    },
+    LocalVecBlock {
+        type: Start,
+        text: "testSwitch()",
+        x: 0,
+        y: 2900,
+    },
+    LocalVecBlock {
+        type: Condition,
+        text: "switch (number) ",
+        x: 0,
+        y: 3000,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "switch",
+        x: -450,
+        y: 3000,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "(number)",
+        x: -450,
+        y: 3100,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "(",
+        x: -450,
+        y: 3200,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "number",
+        x: -450,
+        y: 3300,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: ")",
+        x: -450,
+        y: 3400,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "case 1:\n            printf(\"Number is 1\\n\");\n            break;",
+        x: -150,
+        y: 3100,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "case 2:\n            printf(\"Number is 2\\n\");\n            break;",
+        x: 150,
+        y: 3100,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "default:\n            printf(\"Number is not 1 or 2\\n\");",
+        x: 450,
+        y: 3100,
+    },
+    LocalVecBlock {
+        type: EndMatchArm,
+        text: "}",
+        x: 450,
+        y: 3200,
+    },
+    LocalVecBlock {
+        type: EndMatchArm,
+        text: "}",
+        x: 450,
+        y: 3300,
+    },
+    LocalVecBlock {
+        type: Start,
+        text: "testArray()",
+        x: 0,
+        y: 3400,
+    },
+    LocalVecBlock {
+        type: Cycle,
+        text: "for (int i = 0; i < 5; i++) ",
+        x: 0,
+        y: 3500,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Array element %d: %d\\n\", i, arr[i])",
+        x: 0,
+        y: 3600,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "0:3500",
+        x: 0,
+        y: 3700,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "}",
+        x: 0,
+        y: 3800,
+    },
+    LocalVecBlock {
+        type: Start,
+        text: "testPointer()",
+        x: 0,
+        y: 3900,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value of var: %d\\n\", var)",
+        x: 0,
+        y: 4000,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value of *ptr: %d\\n\", *ptr)",
+        x: 0,
+        y: 4100,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Address of var: %p\\n\", (void *)&var)",
+        x: 0,
+        y: 4200,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Address stored in ptr: %p\\n\", (void *)ptr)",
+        x: 0,
+        y: 4300,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "}",
+        x: 0,
+        y: 4400,
+    },
+    LocalVecBlock {
+        type: Start,
+        text: "testStruct()",
+        x: 0,
+        y: 4500,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "p1.x = 10",
+        x: 0,
+        y: 4600,
+    },
+    LocalVecBlock {
+        type: Action,
+        text: "p1.y = 20",
+        x: 0,
+        y: 4700,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Point p1: (%d, %d)\\n\", p1.x, p1.y)",
+        x: 0,
+        y: 4800,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "}",
+        x: 0,
+        y: 4900,
+    },
+    LocalVecBlock {
+        type: Start,
+        text: "testComplexIfElse(int value)",
+        x: 0,
+        y: 5000,
+    },
+    LocalVecBlock {
+        type: Condition,
+        text: "if (value > 10) ",
+        x: 0,
+        y: 5100,
+    },
+    LocalVecBlock {
+        type: Condition,
+        text: "if (value % 2 == 0) ",
+        x: 700,
+        y: 5200,
+    },
+    LocalVecBlock {
+        type: Condition,
+        text: "if (value > 20) ",
+        x: 1000,
+        y: 5300,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value is greater than 20 and even\\n\")",
+        x: 1100,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end if",
+        x: 1100,
+        y: 5500,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "mr penis",
+        x: 900,
+        y: 5100,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "continue",
+        x: 900,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value is between 10 and 20 and even\\n\")",
+        x: 900,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end else",
+        x: 900,
+        y: 5500,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end if",
+        x: 1000,
+        y: 5600,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "mr penis",
+        x: 400,
+        y: 5000,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "continue",
+        x: 400,
+        y: 5300,
+    },
+    LocalVecBlock {
+        type: Condition,
+        text: "if (value > 20) ",
+        x: 400,
+        y: 5300,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value is greater than 20 and odd\\n\")",
+        x: 500,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end if",
+        x: 500,
+        y: 5500,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "mr penis",
+        x: 300,
+        y: 5100,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "continue",
+        x: 300,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value is between 10 and 20 and odd\\n\")",
+        x: 300,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end else",
+        x: 300,
+        y: 5500,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end else",
+        x: 400,
+        y: 5600,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end if",
+        x: 500,
+        y: 5700,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "mr penis",
+        x: -700,
+        y: 4900,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "continue",
+        x: -700,
+        y: 5200,
+    },
+    LocalVecBlock {
+        type: Condition,
+        text: "if (value % 2 == 0) ",
+        x: -700,
+        y: 5200,
+    },
+    LocalVecBlock {
+        type: Condition,
+        text: "if (value > 5) ",
+        x: -400,
+        y: 5300,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value is between 5 and 10 and even\\n\")",
+        x: -300,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end if",
+        x: -300,
+        y: 5500,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "mr penis",
+        x: -500,
+        y: 5100,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "continue",
+        x: -500,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value is less than 5 and even\\n\")",
+        x: -500,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end else",
+        x: -500,
+        y: 5500,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end if",
+        x: -400,
+        y: 5600,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "mr penis",
+        x: -1000,
+        y: 5000,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "continue",
+        x: -1000,
+        y: 5300,
+    },
+    LocalVecBlock {
+        type: Condition,
+        text: "if (value > 5) ",
+        x: -1000,
+        y: 5300,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value is between 5 and 10 and odd\\n\")",
+        x: -900,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end if",
+        x: -900,
+        y: 5500,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "mr penis",
+        x: -1100,
+        y: 5100,
+    },
+    LocalVecBlock {
+        type: Else,
+        text: "continue",
+        x: -1100,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: Print,
+        text: "printf(\"Value is less than 5 and odd\\n\")",
+        x: -1100,
+        y: 5400,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end else",
+        x: -1100,
+        y: 5500,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end else",
+        x: -1000,
+        y: 5600,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "end else",
+        x: -900,
+        y: 5700,
+    },
+    LocalVecBlock {
+        type: End,
+        text: "}",
+        x: -800,
+        y: 5800,
     },
 ]
-thish block ready for processing LocalVecBlock { type: Start, text: "new_test", x: 0, y: 0 }
+thish block ready for processing LocalVecBlock { type: Start, text: "Начало", x: 0, y: 0 }
 coords: x=0; y=0
-thish block ready for processing LocalVecBlock { type: Condition, text: "if g11 ", x: 0, y: 100 }
+thish block ready for processing LocalVecBlock { type: Print, text: "printMessage(\"Hello, World!\")", x: 0, y: 100 }
 coords: x=0; y=100
-push iterator [1]
-push look_for if g11 
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g11\")", x: 200, y: 200 }
-coords: x=200; y=200
-text in json block println!("g11"), iterator 2
+text in json block printMessage("Hello, World!"), iterator 1
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Sum: %d\\n\", sum)", x: 0, y: 200 }
+coords: x=0; y=200
+text in json block printf("Sum: %d\n", sum), iterator 2
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: Condition, text: "if (sum > 5) ", x: 0, y: 300 }
+coords: x=0; y=300
+push iterator [3]
+push look_for if (sum > 5) 
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Sum is greater than 5\\n\")", x: 100, y: 400 }
+coords: x=100; y=400
+text in json block printf("Sum is greater than 5\n"), iterator 4
 enter in check funk
 after check [-10, 0]
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g12\")", x: 200, y: 300 }
-coords: x=200; y=300
-text in json block println!("g12"), iterator 3
-enter in check funk
-after check [-10, 0]
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g13\")", x: 200, y: 400 }
-coords: x=200; y=400
-text in json block println!("g13"), iterator 4
-enter in check funk
-after check [-10, 0]
-thish block ready for processing LocalVecBlock { type: End, text: "end if", x: 200, y: 500 }
-coords: x=200; y=500
+thish block ready for processing LocalVecBlock { type: End, text: "end if", x: 100, y: 500 }
+coords: x=100; y=500
 pop look_for
-thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: -200, y: -100 }
-coords: x=-200; y=-100
-pop iterator [1]
-thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -200, y: 200 }
-coords: x=-200; y=200
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g21\")", x: -200, y: 200 }
-coords: x=-200; y=200
-text in json block println!("g21"), iterator 5
+thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: -100, y: 100 }
+coords: x=-100; y=100
+pop iterator [3]
+thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -100, y: 400 }
+coords: x=-100; y=400
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Sum is not greater than 5\\n\")", x: -100, y: 400 }
+coords: x=-100; y=400
+text in json block printf("Sum is not greater than 5\n"), iterator 5
 enter in check funk
 after check [-10, 0]
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g22\")", x: -200, y: 300 }
-coords: x=-200; y=300
-text in json block println!("g22"), iterator 6
-enter in check funk
-after check [-10, 0]
-thish block ready for processing LocalVecBlock { type: Condition, text: "if g31 ", x: -200, y: 400 }
-coords: x=-200; y=400
-push iterator [7]
-push look_for if g31 
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g31\")", x: -100, y: 500 }
+thish block ready for processing LocalVecBlock { type: End, text: "end else", x: -100, y: 500 }
 coords: x=-100; y=500
-text in json block println!("g31"), iterator 8
+thish block ready for processing LocalVecBlock { type: Action, text: "testLoop()", x: 0, y: 600 }
+coords: x=0; y=600
 enter in check funk
-after check [-20, 0]
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g32\")", x: -100, y: 600 }
-coords: x=-100; y=600
-text in json block println!("g32"), iterator 9
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "testSwitch()", x: 0, y: 700 }
+coords: x=0; y=700
 enter in check funk
-after check [-20, 0]
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g33\")", x: -100, y: 700 }
-coords: x=-100; y=700
-text in json block println!("g33"), iterator 10
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "testArray()", x: 0, y: 800 }
+coords: x=0; y=800
 enter in check funk
-after check [-20, 0]
-thish block ready for processing LocalVecBlock { type: End, text: "end if", x: -100, y: 800 }
-coords: x=-100; y=800
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "testPointer()", x: 0, y: 900 }
+coords: x=0; y=900
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "testStruct()", x: 0, y: 1000 }
+coords: x=0; y=1000
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "testComplexIfElse(15)", x: 0, y: 1100 }
+coords: x=0; y=1100
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "return 0;", x: 0, y: 1200 }
+coords: x=0; y=1200
+thish block ready for processing LocalVecBlock { type: Start, text: "printMessage(const char *message)", x: 0, y: 1300 }
+coords: x=0; y=1300
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"%s\\n\", message)", x: 0, y: 1400 }
+coords: x=0; y=1400
+text in json block printf("%s\n", message), iterator 14
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "}", x: 0, y: 1500 }
+coords: x=0; y=1500
+thish block ready for processing LocalVecBlock { type: Start, text: "add(int a, int b)", x: 0, y: 1600 }
+coords: x=0; y=1600
+thish block ready for processing LocalVecBlock { type: End, text: "return a + b;", x: 0, y: 1700 }
+coords: x=0; y=1700
+thish block ready for processing LocalVecBlock { type: Start, text: "testLoop()", x: 0, y: 1800 }
+coords: x=0; y=1800
+thish block ready for processing LocalVecBlock { type: Cycle, text: "for (i = 0; i < 5; i++) ", x: 0, y: 1900 }
+coords: x=0; y=1900
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"For loop iteration: %d\\n\", i)", x: 0, y: 2000 }
+coords: x=0; y=2000
+text in json block printf("For loop iteration: %d\n", i), iterator 20
+enter in check funk
+1
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "0:1900", x: 0, y: 2100 }
+coords: x=0; y=2100
+index: 19
+
+add arrow to cycle
+metirial:
+x_m_m_a == [-10, 10]
+all current: x == 0, y == 2100
+to: x == 0; y == 1900
+arrow after cycle
+
+metirial:
+x_m_m_a == [-20, 10]
+all current: x == 0, y == 2100
+to: x == 0; y == 1900
+
+thish block ready for processing LocalVecBlock { type: Action, text: "i = 0", x: 0, y: 2200 }
+coords: x=0; y=2200
+enter in check funk
+after check [-20, 20]
+thish block ready for processing LocalVecBlock { type: Cycle, text: "while (i < 5) ", x: 0, y: 2300 }
+coords: x=0; y=2300
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"While loop iteration: %d\\n\", i)", x: 0, y: 2400 }
+coords: x=0; y=2400
+text in json block printf("While loop iteration: %d\n", i), iterator 24
+enter in check funk
+1
+after check [-20, 20]
+thish block ready for processing LocalVecBlock { type: Action, text: "i++", x: 0, y: 2500 }
+coords: x=0; y=2500
+enter in check funk
+1
+after check [-20, 20]
+thish block ready for processing LocalVecBlock { type: End, text: "0:2300", x: 0, y: 2600 }
+coords: x=0; y=2600
+index: 23
+
+add arrow to cycle
+metirial:
+x_m_m_a == [-30, 30]
+all current: x == 0, y == 2600
+to: x == 0; y == 2300
+arrow after cycle
+
+metirial:
+x_m_m_a == [-40, 30]
+all current: x == 0, y == 2600
+to: x == 0; y == 2300
+
+thish block ready for processing LocalVecBlock { type: Action, text: "i = 0", x: 0, y: 2700 }
+coords: x=0; y=2700
+enter in check funk
+after check [-40, 40]
+thish block ready for processing LocalVecBlock { type: End, text: "}", x: 0, y: 2800 }
+coords: x=0; y=2800
+thish block ready for processing LocalVecBlock { type: Start, text: "testSwitch()", x: 0, y: 2900 }
+coords: x=0; y=2900
+thish block ready for processing LocalVecBlock { type: Condition, text: "switch (number) ", x: 0, y: 3000 }
+coords: x=0; y=3000
+push iterator [30]
+push look_for switch (number) 
+thish block ready for processing LocalVecBlock { type: Action, text: "switch", x: -450, y: 3000 }
+coords: x=-450; y=3000
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "(number)", x: -450, y: 3100 }
+coords: x=-450; y=3100
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "(", x: -450, y: 3200 }
+coords: x=-450; y=3200
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "number", x: -450, y: 3300 }
+coords: x=-450; y=3300
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: ")", x: -450, y: 3400 }
+coords: x=-450; y=3400
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "case 1:\n            printf(\"Number is 1\\n\");\n            break;", x: -150, y: 3100 }
+coords: x=-150; y=3100
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "case 2:\n            printf(\"Number is 2\\n\");\n            break;", x: 150, y: 3100 }
+coords: x=150; y=3100
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "default:\n            printf(\"Number is not 1 or 2\\n\");", x: 450, y: 3100 }
+coords: x=450; y=3100
+enter in check funk
+after check [-10, 0]
+thish block ready for processing LocalVecBlock { type: EndMatchArm, text: "}", x: 450, y: 3200 }
+coords: x=450; y=3200
+push match arm
+thish block ready for processing LocalVecBlock { type: EndMatchArm, text: "}", x: 450, y: 3300 }
+coords: x=450; y=3300
+push match arm
+thish block ready for processing LocalVecBlock { type: Start, text: "testArray()", x: 0, y: 3400 }
+coords: x=0; y=3400
+thish block ready for processing LocalVecBlock { type: Cycle, text: "for (int i = 0; i < 5; i++) ", x: 0, y: 3500 }
+coords: x=0; y=3500
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Array element %d: %d\\n\", i, arr[i])", x: 0, y: 3600 }
+coords: x=0; y=3600
+text in json block printf("Array element %d: %d\n", i, arr[i]), iterator 41
+enter in check funk
+1
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "0:3500", x: 0, y: 3700 }
+coords: x=0; y=3700
+index: 40
+
+add arrow to cycle
+metirial:
+x_m_m_a == [-10, 10]
+all current: x == 0, y == 3700
+to: x == 0; y == 3500
+arrow after cycle
+
+metirial:
+x_m_m_a == [-20, 10]
+all current: x == 0, y == 3700
+to: x == 0; y == 3500
+
+thish block ready for processing LocalVecBlock { type: End, text: "}", x: 0, y: 3800 }
+coords: x=0; y=3800
+thish block ready for processing LocalVecBlock { type: Start, text: "testPointer()", x: 0, y: 3900 }
+coords: x=0; y=3900
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value of var: %d\\n\", var)", x: 0, y: 4000 }
+coords: x=0; y=4000
+text in json block printf("Value of var: %d\n", var), iterator 45
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value of *ptr: %d\\n\", *ptr)", x: 0, y: 4100 }
+coords: x=0; y=4100
+text in json block printf("Value of *ptr: %d\n", *ptr), iterator 46
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Address of var: %p\\n\", (void *)&var)", x: 0, y: 4200 }
+coords: x=0; y=4200
+text in json block printf("Address of var: %p\n", (void *)&var), iterator 47
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Address stored in ptr: %p\\n\", (void *)ptr)", x: 0, y: 4300 }
+coords: x=0; y=4300
+text in json block printf("Address stored in ptr: %p\n", (void *)ptr), iterator 48
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "}", x: 0, y: 4400 }
+coords: x=0; y=4400
+thish block ready for processing LocalVecBlock { type: Start, text: "testStruct()", x: 0, y: 4500 }
+coords: x=0; y=4500
+thish block ready for processing LocalVecBlock { type: Action, text: "p1.x = 10", x: 0, y: 4600 }
+coords: x=0; y=4600
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: Action, text: "p1.y = 20", x: 0, y: 4700 }
+coords: x=0; y=4700
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Point p1: (%d, %d)\\n\", p1.x, p1.y)", x: 0, y: 4800 }
+coords: x=0; y=4800
+text in json block printf("Point p1: (%d, %d)\n", p1.x, p1.y), iterator 53
+enter in check funk
+after check [0, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "}", x: 0, y: 4900 }
+coords: x=0; y=4900
+thish block ready for processing LocalVecBlock { type: Start, text: "testComplexIfElse(int value)", x: 0, y: 5000 }
+coords: x=0; y=5000
+thish block ready for processing LocalVecBlock { type: Condition, text: "if (value > 10) ", x: 0, y: 5100 }
+coords: x=0; y=5100
+push iterator [30, 56]
+push look_for if (value > 10) 
+thish block ready for processing LocalVecBlock { type: Condition, text: "if (value % 2 == 0) ", x: 700, y: 5200 }
+coords: x=700; y=5200
+push iterator [30, 56, 57]
+push look_for if (value % 2 == 0) 
+thish block ready for processing LocalVecBlock { type: Condition, text: "if (value > 20) ", x: 1000, y: 5300 }
+coords: x=1000; y=5300
+push iterator [30, 56, 57, 58]
+push look_for if (value > 20) 
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value is greater than 20 and even\\n\")", x: 1100, y: 5400 }
+coords: x=1100; y=5400
+text in json block printf("Value is greater than 20 and even\n"), iterator 59
+enter in check funk
+after check [-30, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "end if", x: 1100, y: 5500 }
+coords: x=1100; y=5500
 pop look_for
-thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: -300, y: 200 }
-coords: x=-300; y=200
-pop iterator [7]
-thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -300, y: 500 }
-coords: x=-300; y=500
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g41\")", x: -300, y: 500 }
-coords: x=-300; y=500
-text in json block println!("g41"), iterator 11
+thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: 900, y: 5100 }
+coords: x=900; y=5100
+pop iterator [30, 56, 57, 58]
+thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: 900, y: 5400 }
+coords: x=900; y=5400
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value is between 10 and 20 and even\\n\")", x: 900, y: 5400 }
+coords: x=900; y=5400
+text in json block printf("Value is between 10 and 20 and even\n"), iterator 60
 enter in check funk
-after check [-20, 0]
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g42\")", x: -300, y: 600 }
-coords: x=-300; y=600
-text in json block println!("g42"), iterator 12
+after check [-30, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "end else", x: 900, y: 5500 }
+coords: x=900; y=5500
+thish block ready for processing LocalVecBlock { type: End, text: "end if", x: 1000, y: 5600 }
+coords: x=1000; y=5600
+pop look_for
+thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: 400, y: 5000 }
+coords: x=400; y=5000
+pop iterator [30, 56, 57]
+thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: 400, y: 5300 }
+coords: x=400; y=5300
+thish block ready for processing LocalVecBlock { type: Condition, text: "if (value > 20) ", x: 400, y: 5300 }
+coords: x=400; y=5300
+push iterator [30, 56, 61]
+push look_for if (value > 20) 
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value is greater than 20 and odd\\n\")", x: 500, y: 5400 }
+coords: x=500; y=5400
+text in json block printf("Value is greater than 20 and odd\n"), iterator 62
 enter in check funk
-after check [-20, 0]
-thish block ready for processing LocalVecBlock { type: Print, text: "println!(\"g43\")", x: -300, y: 700 }
-coords: x=-300; y=700
-text in json block println!("g43"), iterator 13
+after check [-40, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "end if", x: 500, y: 5500 }
+coords: x=500; y=5500
+pop look_for
+thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: 300, y: 5100 }
+coords: x=300; y=5100
+pop iterator [30, 56, 61]
+thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: 300, y: 5400 }
+coords: x=300; y=5400
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value is between 10 and 20 and odd\\n\")", x: 300, y: 5400 }
+coords: x=300; y=5400
+text in json block printf("Value is between 10 and 20 and odd\n"), iterator 63
 enter in check funk
-after check [-20, 0]
-thish block ready for processing LocalVecBlock { type: End, text: "end else", x: -300, y: 800 }
-coords: x=-300; y=800
-thish block ready for processing LocalVecBlock { type: End, text: "end else", x: -200, y: 900 }
-coords: x=-200; y=900
-thish block ready for processing LocalVecBlock { type: End, text: "}", x: -100, y: 1000 }
-coords: x=-100; y=1000
+after check [-40, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "end else", x: 300, y: 5500 }
+coords: x=300; y=5500
+thish block ready for processing LocalVecBlock { type: End, text: "end else", x: 400, y: 5600 }
+coords: x=400; y=5600
+thish block ready for processing LocalVecBlock { type: End, text: "end if", x: 500, y: 5700 }
+coords: x=500; y=5700
+pop look_for
+thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: -700, y: 4900 }
+coords: x=-700; y=4900
+pop iterator [30, 56]
+thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -700, y: 5200 }
+coords: x=-700; y=5200
+thish block ready for processing LocalVecBlock { type: Condition, text: "if (value % 2 == 0) ", x: -700, y: 5200 }
+coords: x=-700; y=5200
+push iterator [30, 64]
+push look_for if (value % 2 == 0) 
+thish block ready for processing LocalVecBlock { type: Condition, text: "if (value > 5) ", x: -400, y: 5300 }
+coords: x=-400; y=5300
+push iterator [30, 64, 65]
+push look_for if (value > 5) 
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value is between 5 and 10 and even\\n\")", x: -300, y: 5400 }
+coords: x=-300; y=5400
+text in json block printf("Value is between 5 and 10 and even\n"), iterator 66
+enter in check funk
+after check [-60, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "end if", x: -300, y: 5500 }
+coords: x=-300; y=5500
+pop look_for
+thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: -500, y: 5100 }
+coords: x=-500; y=5100
+pop iterator [30, 64, 65]
+thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -500, y: 5400 }
+coords: x=-500; y=5400
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value is less than 5 and even\\n\")", x: -500, y: 5400 }
+coords: x=-500; y=5400
+text in json block printf("Value is less than 5 and even\n"), iterator 67
+enter in check funk
+after check [-60, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "end else", x: -500, y: 5500 }
+coords: x=-500; y=5500
+thish block ready for processing LocalVecBlock { type: End, text: "end if", x: -400, y: 5600 }
+coords: x=-400; y=5600
+pop look_for
+thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: -1000, y: 5000 }
+coords: x=-1000; y=5000
+pop iterator [30, 64]
+thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -1000, y: 5300 }
+coords: x=-1000; y=5300
+thish block ready for processing LocalVecBlock { type: Condition, text: "if (value > 5) ", x: -1000, y: 5300 }
+coords: x=-1000; y=5300
+push iterator [30, 68]
+push look_for if (value > 5) 
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value is between 5 and 10 and odd\\n\")", x: -900, y: 5400 }
+coords: x=-900; y=5400
+text in json block printf("Value is between 5 and 10 and odd\n"), iterator 69
+enter in check funk
+after check [-70, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "end if", x: -900, y: 5500 }
+coords: x=-900; y=5500
+pop look_for
+thish block ready for processing LocalVecBlock { type: Else, text: "mr penis", x: -1100, y: 5100 }
+coords: x=-1100; y=5100
+pop iterator [30, 68]
+thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -1100, y: 5400 }
+coords: x=-1100; y=5400
+thish block ready for processing LocalVecBlock { type: Print, text: "printf(\"Value is less than 5 and odd\\n\")", x: -1100, y: 5400 }
+coords: x=-1100; y=5400
+text in json block printf("Value is less than 5 and odd\n"), iterator 70
+enter in check funk
+after check [-70, 0]
+thish block ready for processing LocalVecBlock { type: End, text: "end else", x: -1100, y: 5500 }
+coords: x=-1100; y=5500
+thish block ready for processing LocalVecBlock { type: End, text: "end else", x: -1000, y: 5600 }
+coords: x=-1000; y=5600
+thish block ready for processing LocalVecBlock { type: End, text: "end else", x: -900, y: 5700 }
+coords: x=-900; y=5700
+thish block ready for processing LocalVecBlock { type: End, text: "}", x: -800, y: 5800 }
+coords: x=-800; y=5800
