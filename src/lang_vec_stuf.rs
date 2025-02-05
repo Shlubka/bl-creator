@@ -466,11 +466,8 @@ impl Language for C {
                 }
                 "function_definition" //c
                 | "expression_statement" //c
-                | "match_block"
                 | "compound_statement"
-                | "translation_unit" //c
-                | "match_arm"
-                | "fn" => {
+                | "translation_unit" => {
                     let mut cursor = node.walk();
                     for child in node.children(&mut cursor) {
                         traverse_ast(
