@@ -489,7 +489,7 @@ fn text_analyzer(i: &mut LocalVecBlock) -> String {
 }
 
 //для чистки стрелок между веток в if else
-fn rem_unused(local_full_blocks: &mut FullJson, iterator: usize, sluzba: &usize) {
+fn _rem_unused(local_full_blocks: &mut FullJson, iterator: usize, sluzba: &usize) {
     let start_index = *sluzba;
     local_full_blocks.arrows.retain(|arrow| {
         if arrow.end_index == iterator {

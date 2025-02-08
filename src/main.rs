@@ -1,18 +1,17 @@
 use dialoguer::Input;
 use inquire::Select;
 use std::{env, fs, path::PathBuf};
-//use tree_sitter_c::LANGUAGE as tree_sitter_c;
 
 mod mk_json_blocks;
 use crate::mk_json_blocks::create_json_blocks;
 mod lang_vec_stuf;
-use crate::lang_vec_stuf::{Rust, C};
+use crate::lang_vec_stuf::Rust;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<String> = env::args().collect();
     let lang = get_argument(&args, 1).unwrap_or_else(|_| prompt_for_language());
     let file_path = get_argument(&args, 2).unwrap_or_else(|_| prompt_for_file_path());
-    let support_language: Vec<Box<dyn lang_vec_stuf::Language>> = vec![Box::new(Rust), Box::new(C)];
+    let support_language: Vec<Box<dyn lang_vec_stuf::Language>> = vec![Box::new(Rust)];
 
     let selected_language = select_language(&lang, &support_language)?;
     let path = PathBuf::from(file_path);
@@ -29,7 +28,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
-
 
 fn get_argument(args: &[String], index: usize) -> Result<String, String> {
     if args.len() > index {

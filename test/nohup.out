@@ -1,0 +1,36 @@
+[2025-02-07 21:22:00.953] [info] Using configuration file /home/kira/.config/waybar/config.jsonc
+[2025-02-07 21:22:00.959] [info] Unable to receive desktop appearance: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Не существует интерфейса “org.freedesktop.portal.Settings” на объекте по пути /org/freedesktop/portal/desktop
+[2025-02-07 21:22:00.959] [info] Using CSS file /home/kira/.config/waybar/style.css
+
+(waybar:15222): Gtk-WARNING **: 21:22:00.960: Theme parsing error: style.css:65:12: Not using units is deprecated. Assuming 'px'.
+
+(waybar:15222): Gtk-WARNING **: 21:22:00.960: Theme parsing error: style.css:73:14: Not using units is deprecated. Assuming 'px'.
+
+(waybar:15222): Gtk-WARNING **: 21:22:00.960: Theme parsing error: style.css:79:13: Not using units is deprecated. Assuming 'px'.
+
+(waybar:15222): Gtk-WARNING **: 21:22:00.960: Theme parsing error: style.css:83:13: Not using units is deprecated. Assuming 'px'.
+
+(waybar:15222): Gtk-WARNING **: 21:22:00.960: Theme parsing error: style.css:88:14: Not using units is deprecated. Assuming 'px'.
+[2025-02-07 21:22:00.974] [info] Hyprland IPC starting
+[2025-02-07 21:22:00.996] [info] Loading persistent workspaces from Waybar config
+[2025-02-07 21:22:00.996] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-02-07 21:22:01.001] [warning] no bluetooth controller found
+[2025-02-07 21:22:01.164] [info] Bar configured (width: 1274, height: 16) for output: eDP-1
+
+(wlogout:16146): Gtk-CRITICAL **: 21:24:59.349: gtk_label_set_yalign: assertion 'GTK_IS_LABEL (label)' failed
+
+(wlogout:16146): Gtk-CRITICAL **: 21:24:59.349: gtk_label_set_xalign: assertion 'GTK_IS_LABEL (label)' failed
+
+(wlogout:16146): Gtk-CRITICAL **: 21:24:59.349: gtk_label_set_yalign: assertion 'GTK_IS_LABEL (label)' failed
+
+(wlogout:16146): Gtk-CRITICAL **: 21:24:59.349: gtk_label_set_xalign: assertion 'GTK_IS_LABEL (label)' failed
+
+(wlogout:16146): Gtk-CRITICAL **: 21:24:59.349: gtk_label_set_yalign: assertion 'GTK_IS_LABEL (label)' failed
+
+(wlogout:16146): Gtk-CRITICAL **: 21:24:59.349: gtk_label_set_xalign: assertion 'GTK_IS_LABEL (label)' failed
+
+(wlogout:16146): Gtk-CRITICAL **: 21:24:59.349: gtk_label_set_yalign: assertion 'GTK_IS_LABEL (label)' failed
+
+(wlogout:16146): Gtk-CRITICAL **: 21:24:59.349: gtk_label_set_xalign: assertion 'GTK_IS_LABEL (label)' failed
+
+(wlogout:16146): Gtk-WARNING **: 21:24:59.349: Theme parsing error: style.css:13:12: Not using units is deprecated. Assuming 'px'.
