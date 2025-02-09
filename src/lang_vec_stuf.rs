@@ -42,15 +42,15 @@ pub struct LocalVecBlock {
 //вместо того, чтобы таскать кучу переменных, их можно собрать в контекст и таксать только контекст)
 #[derive(Debug)]
 struct Context {
-    source: Box<[u8]>,
-    blocks: Vec<LocalVecBlock>,
-    block_vec: Vec<CodeBlock>,
-    x_offset: i32,
-    y_offset: i32,
-    skip_until_brace: bool,
-    is_return: bool,
-    if_else_stack: Vec<(i32, i32)>,
-    y_if_max: i32,
+    source: Box<[u8]>, // весь исходный код
+    blocks: Vec<LocalVecBlock>, // блок для следующего этапа
+    block_vec: Vec<CodeBlock>, // служебный блок, содержит тип блока для следующего этапа
+    x_offset: i32, // смещение по х
+    y_offset: i32, // смещение по у
+    skip_until_brace: bool, // и так все понятно
+    is_return: bool, // кажется тоже вопросов быть не должно
+    if_else_stack: Vec<(i32, i32)>, // стек для отслеживания вложенности if else
+    y_if_max: i32, // максимальная у координата в конструкции if
 }
 
 impl Context {
@@ -131,6 +131,8 @@ impl NodeProcessor {
             "{",
             "line_comment",
             "struct_item",
+            "if",
+            "binary_expression",
         ];
 
         let not_go_into = vec![
@@ -195,7 +197,6 @@ impl NodeProcessor {
     fn process(&self, node: &Node, ctx: &mut Context) {
         let node_kind = node.kind();
 
-        //println!("process node: {}\n", node.kind());
         if let Some(handler) = self.handlers.get(node_kind) {
             handler(node, ctx);
         } else {
@@ -280,15 +281,15 @@ impl Language for Rust {
 //handlers
 
 fn else_handler(_node: &Node, ctx: &mut Context) {
-    println!("create else info block");
+    /*println!("create else info block");
     ctx.blocks.last_mut().unwrap().x = ctx.x_offset;
     ctx.blocks.last_mut().unwrap().r#type = BlockType::Else;
     ctx.blocks.last_mut().unwrap().text = "continue".to_string();
-    ctx.y_offset -= 100;
+    ctx.y_offset += 100;*/
 }
 
 fn handle_else_clause(node: &Node, ctx: &mut Context) {
-    let text = handle_get_node_text(node, ctx);
+    /*let text = handle_get_node_text(node, ctx);
     println!("text in else_clause: {text}");
     println!(
         "pop from if_else_stack. it contains {:?}",
@@ -306,7 +307,14 @@ fn handle_else_clause(node: &Node, ctx: &mut Context) {
         .push(CodeBlock::Else(ctx.x_offset, ctx.y_offset));
     ctx.blocks.last_mut().unwrap().r#type = BlockType::Else;
     ctx.blocks.last_mut().unwrap().x = ctx.x_offset;
-    ctx.blocks.last_mut().unwrap().y = ctx.y_offset - 200;
+    ctx.blocks.last_mut().unwrap().y = ctx.y_offset - 200;*/
+    let text = handle_get_node_text(node, ctx);
+    println!("text in else_clause: {text}");
+    println!(
+        "pop from if_else_stack. it contains {:?}",
+        ctx.if_else_stack
+    );
+    let return_to = ctx.if_else_stack.pop().unwrap();
 }
 
 fn handle_if(node: &Node, ctx: &mut Context) {
@@ -314,7 +322,9 @@ fn handle_if(node: &Node, ctx: &mut Context) {
     ctx.add_block(BlockType::Condition, &text);
     ctx.block_vec
         .push(CodeBlock::If(ctx.x_offset, ctx.y_offset, 100));
+    ctx.if_else_stack.push((ctx.x_offset, ctx.y_offset));
     ctx.x_offset += 100;
+    ctx.y_offset += 100;
 }
 
 fn handle_get_node_text(node: &Node, ctx: &Context) -> String {
@@ -327,8 +337,10 @@ fn handle_get_node_text(node: &Node, ctx: &Context) -> String {
         .to_string()
 }
 
-fn handle_closing_brecket(_node: &Node, ctx: &mut Context) {
+fn handle_closing_brecket(node: &Node, ctx: &mut Context) {
     ctx.add_empty_block();
+    let text = handle_get_node_text(node, ctx);
+    println!("found closing brecket {text}");
     println!("{:?}", ctx.block_vec.last());
     println!("len of block mass = {}", ctx.block_vec.len());
 
@@ -350,7 +362,7 @@ fn handle_closing_brecket(_node: &Node, ctx: &mut Context) {
             //ctx.x_offset -= 100;
             ctx.y_offset -= 100;
             ctx.x_offset -= *offset;
-            ctx.block_vec.pop().unwrap();
+            ctx.block_vec.pop();
         }
         CodeBlock::For(x, y) => {
             println!("Handling For block at {x}:{y}");
@@ -379,7 +391,7 @@ fn handle_closing_brecket(_node: &Node, ctx: &mut Context) {
                 ctx.blocks.last_mut().unwrap().text = "drop".to_string();
                 println!("skip brecket");
                 //drop(*ctx.blocks.last_mut().unwrap().);
-                return;
+                ctx.block_vec.pop();
             }
         }
         CodeBlock::Continue => {
@@ -495,7 +507,7 @@ fn handle_macro_invocation(node: &Node, ctx: &mut Context) {
     if ctx.y_offset > ctx.y_if_max {
         ctx.y_if_max = ctx.y_offset;
     }
-    ctx.y_offset += 100;
+    ctx.y_offset += 200;
 }
 
 fn handle_return_expression(node: &Node, ctx: &mut Context) {
@@ -547,7 +559,7 @@ fn handle_match_expression(node: &Node, ctx: &mut Context) {
     ctx.y_offset -= 100;
 }
 
-fn handler_match_pattern(node: &Node, ctx: &mut Context) {
+fn handler_match_pattern(_node: &Node, ctx: &mut Context) {
     ctx.add_empty_block();
     //возможно насрал, посмотрим по поведению
     if let Some(CodeBlock::Match(_, to_y, _)) = ctx.block_vec.last_mut() {
