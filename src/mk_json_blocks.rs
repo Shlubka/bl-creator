@@ -104,12 +104,11 @@ pub fn create_json_blocks(mut analyzed_vector: Vec<LocalVecBlock>) -> String {
         println!("thish block ready for processing {i:?}");
         let local_text = text_analyzer(i);
         let mut local_block = JsBlock::new(i.x, i.y);
-        let mut local_arrow = Arrow::new(iterator.clone());
+        let mut local_arrow = Arrow::new(iterator);
         println!("coords: x={}; y={}", i.x, i.y);
 
         match i.r#type {
             BlockType::Start => {
-                //nesting_if_else_iter.clear();
                 block_start(
                     &mut x_min_max_acum,
                     &mut local_full_blocks,
@@ -127,7 +126,6 @@ pub fn create_json_blocks(mut analyzed_vector: Vec<LocalVecBlock>) -> String {
                     &mut look_for_cond_xy,
                     &mut last_condition_index,
                     iterator,
-                    //is_match: bool
                     &mut sluzba,
                 );
             }
@@ -288,7 +286,7 @@ pub fn create_json_blocks(mut analyzed_vector: Vec<LocalVecBlock>) -> String {
 }
 
 fn check_x(is_cycle: i32, current_x: i32, x_min_max_acum: &mut [i32; 2]) {
-    print!("enter in check funk\n");
+    println!("enter in check funk");
     if is_cycle > 0 {
         println!("{is_cycle}");
         if current_x < x_min_max_acum[0] {
@@ -313,8 +311,7 @@ fn add_arrow_from_cycle(
     to_y: i32,
     to_x: i32,
 ) {
-    println!("arrow after cycle");
-    println!("");
+    println!("arrow after cycle\n");
     println!(
         "metirial:\nx_m_m_a == {x_min_max_acum:?}\nall current: x == {}, y == {}\nto: x == {to_x}; y == {to_y}",
         current.x, current.y
@@ -351,9 +348,10 @@ fn add_arrow_from_cycle(
     local_arrow.start_connector_index = 1;
     local_arrow.end_connector_index = 0;
     local_arrow.counts = vec![1, 1, 1, 1, 1];
-    local_arrow.nodes = Vec::from(value);
+    local_arrow.nodes = value;
     x_min_max_acum[1] += 10;
 }
+
 fn add_arrow_to_cycle(
     local_full_blocks: &mut FullJson,
     iterator: usize,
@@ -401,7 +399,7 @@ fn add_arrow_to_cycle(
         end_index: *cycle_index,
         start_connector_index: 3,
         end_connector_index: 3,
-        nodes: Vec::from(value),
+        nodes: (value),
         counts: vec![1, 1, 1, 1, 1],
     };
     local_full_blocks.arrows.push(local_arrow_local);

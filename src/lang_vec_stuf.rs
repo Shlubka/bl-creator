@@ -1,10 +1,24 @@
 use std::collections::HashMap;
 use tree_sitter::{Node, Parser};
 
+#[cfg(debug_assertions)]
+macro_rules! dev_log {
+    ($($arg:tt)*) => {{
+        println!($($arg)*);
+    }};
+}
+
+#[cfg(not(debug_assertions))]
+macro_rules! dev_log {
+    ($($arg:tt)*) => {{}};
+}
+
 pub trait Language {
     fn get_name(&self) -> &'static str;
     fn analyze_to_vec(&self, source_code: String) -> Vec<LocalVecBlock>;
+
 }
+
 
 #[derive(Debug, PartialEq)]
 enum CodeBlock {
@@ -15,8 +29,6 @@ enum CodeBlock {
     While(i32, i32),
     Loop(i32, i32),
     Func,
-    Return,
-    Continue,
 }
 
 #[derive(Debug, PartialEq)]
@@ -49,8 +61,18 @@ struct Context {
     y_offset: i32, // смещение по у
     skip_until_brace: bool, // и так все понятно
     is_return: bool, // кажется тоже вопросов быть не должно
-    if_else_stack: Vec<(i32, i32)>, // стек для отслеживания вложенности if else
+    if_else_stack: Vec<IfElseContext>, // стек для отслеживания вложенности if else
+    return_to_if: Vec<[i32; 2]>, // x y
     y_if_max: i32, // максимальная у координата в конструкции if
+    skip_next_else: bool,
+}
+
+#[derive(Debug)]
+struct IfElseContext {
+    start_x: i32,
+    start_y: i32,
+    depth: i32,
+    has_else: bool,
 }
 
 impl Context {
@@ -65,6 +87,8 @@ impl Context {
             is_return: false,
             if_else_stack: Vec::new(),
             y_if_max: 0,
+            skip_next_else: false,
+            return_to_if: Vec::new()
         }
     }
 
@@ -102,7 +126,7 @@ type NodeHandler = fn(&Node, &mut Context);
 struct NodeProcessor {
     handlers: HashMap<String, NodeHandler>,
     ignor_list: Vec<&'static str>,
-    not_go_into: Vec<&'static str>,
+    go_into: Vec<&'static str>,
     skip_children_node: Vec<&'static str>,
 }
 
@@ -133,9 +157,9 @@ impl NodeProcessor {
             "struct_item",
             "if",
             "binary_expression",
-        ];
+            ];
 
-        let not_go_into = vec![
+        let go_into = vec![
             "loop_expression",
             "function_item",
             "block",
@@ -149,7 +173,7 @@ impl NodeProcessor {
             "string_literal",
         ];
 
-        let skip_children_node = vec!["macro_invocation", "match_pattern", "if"];
+        let skip_children_node = vec!["macro_invocation", "match_pattern", "if", "return_expression", "}"];
 
         // Регистрируем основные обработчики
         handlers.insert(
@@ -189,7 +213,7 @@ impl NodeProcessor {
         Self {
             handlers,
             ignor_list,
-            not_go_into,
+            go_into,
             skip_children_node,
         }
     }
@@ -205,8 +229,10 @@ impl NodeProcessor {
     }
 
     fn handle_default(&self, node: &Node, ctx: &mut Context) {
+        //dev_log!("handle_default");
         let source = ctx.source.clone();
         let text = node.utf8_text(source.as_ref()).unwrap_or_default();
+        //dev_log!("{}", text);
         ctx.add_block(BlockType::Action, text);
         ctx.y_offset += 100;
     }
@@ -220,37 +246,32 @@ impl Language for Rust {
         "Rust"
     }
     fn analyze_to_vec(&self, source_code: String) -> Vec<LocalVecBlock> {
-        fn traverse_ast(node: Node, processor: &NodeProcessor, ctx: &mut Context) {
-            let text = node.utf8_text(&ctx.source).unwrap_or("").to_string();
 
-            //processor.process(&node, ctx);
+        fn traverse_ast(node: Node, processor: &NodeProcessor, ctx: &mut Context) {
 
             if processor.ignor_list.contains(&node.kind()) {
-                //println!("ignore ");
-                //println!("node is: {}", node.kind());
-                //println!("text: {text}\n");
                 return;
             }
 
-            if !processor.not_go_into.contains(&node.kind())
+            if !processor.go_into.contains(&node.kind())
                 && !processor.skip_children_node.contains(&node.kind())
             {
-                println!("normal proces");
-                println!("node is: {}", node.kind());
-                println!("text: {text}\n");
+                dev_log!("normal proces");
+                dev_log!("node is: {}", node.kind());
+                dev_log!("text: {}\n", node.utf8_text(&ctx.source).unwrap_or("").to_string());
                 processor.process(&node, ctx);
             }
             if processor.skip_children_node.contains(&node.kind()) {
-                println!("skip children");
-                println!("node is: {}", node.kind());
-                println!("text: {text}\n");
+                dev_log!("skip children");
+                dev_log!("node is: {}", node.kind());
+                dev_log!("text: {}\n", node.utf8_text(&ctx.source).unwrap_or("").to_string());
                 processor.process(&node, ctx);
                 return;
             }
 
-            println!("go into ");
-            println!("node is: {}", node.kind());
-            println!("text: {text}\n");
+            dev_log!("go into");
+            dev_log!("node is: {}", node.kind());
+            dev_log!("text: {}\n", node.utf8_text(&ctx.source).unwrap_or("").to_string());
             let mut cursor = node.walk();
             for child in node.children(&mut cursor) {
                 traverse_ast(child, processor, ctx);
@@ -269,11 +290,13 @@ impl Language for Rust {
         let processor: NodeProcessor = NodeProcessor::for_rust();
 
         traverse_ast(root_node, &processor, &mut ctx);
+
         if !ctx.block_vec.is_empty() {
-            println!("!stack contents!\n{:#?}", ctx.block_vec);
+            dev_log!("!stack contents!\n{:#?}", ctx.block_vec);
             panic!("WRONE CODE")
         }
-        println!("Final block vector: {:#?}", ctx.blocks);
+
+        dev_log!("Final block vector: {:#?}", ctx.blocks);
         ctx.blocks
     }
 }
@@ -281,50 +304,64 @@ impl Language for Rust {
 //handlers
 
 fn else_handler(_node: &Node, ctx: &mut Context) {
-    /*println!("create else info block");
+    dev_log!("create else info block");
+    ctx.add_empty_block();
+    [ctx.x_offset, ctx.y_offset] = ctx.return_to_if.pop().unwrap();
     ctx.blocks.last_mut().unwrap().x = ctx.x_offset;
+    ctx.blocks.last_mut().unwrap().y = ctx.y_offset;
     ctx.blocks.last_mut().unwrap().r#type = BlockType::Else;
     ctx.blocks.last_mut().unwrap().text = "continue".to_string();
-    ctx.y_offset += 100;*/
+    if ctx.skip_next_else{
+        ctx.skip_next_else = false;
+        return;
+    }
+    //dev_log!("else for break");
+    ctx.block_vec.push(CodeBlock::Else(ctx.x_offset, ctx.y_offset));
 }
 
 fn handle_else_clause(node: &Node, ctx: &mut Context) {
-    /*let text = handle_get_node_text(node, ctx);
-    println!("text in else_clause: {text}");
-    println!(
-        "pop from if_else_stack. it contains {:?}",
-        ctx.if_else_stack
-    );
-    let return_to = ctx.if_else_stack.pop().unwrap();
-    ctx.x_offset = return_to.0;
-    ctx.y_offset = return_to.1;
-    println!("after pop x: {}; y: {}", ctx.x_offset, ctx.y_offset);
-    println!("mr penis");
-    ctx.blocks.last_mut().unwrap().text = String::from("mr penis");
-    println!("return to in vec x:{} y:{}", return_to.0, return_to.1);
-    println!("local coords x{} y:{}", ctx.x_offset, ctx.y_offset);
-    ctx.block_vec
-        .push(CodeBlock::Else(ctx.x_offset, ctx.y_offset));
-    ctx.blocks.last_mut().unwrap().r#type = BlockType::Else;
-    ctx.blocks.last_mut().unwrap().x = ctx.x_offset;
-    ctx.blocks.last_mut().unwrap().y = ctx.y_offset - 200;*/
     let text = handle_get_node_text(node, ctx);
-    println!("text in else_clause: {text}");
-    println!(
-        "pop from if_else_stack. it contains {:?}",
-        ctx.if_else_stack
-    );
-    let return_to = ctx.if_else_stack.pop().unwrap();
+    let words = text.lines().next().unwrap().trim();
+    if words.contains("if") {
+        //dev_log!("contains if");
+        ctx.skip_next_else = true;
+    }
+
+}
+
+fn get_firs_line(text: String) -> String {
+    text.lines().next().unwrap().trim().to_string()
 }
 
 fn handle_if(node: &Node, ctx: &mut Context) {
-    let text = handle_get_node_text(node, ctx);
+    let source = ctx.source.clone();
+    let text = node.utf8_text(&source.as_ref()).unwrap();
+    let multiple = text.replace("\n", " ").split_whitespace().filter(|&word| word == "if").count() as i32;
+    dev_log!("text == {text}");
+    let mut text = handle_get_node_text(node, ctx);
+    text = get_firs_line(text);
+
+    dev_log!("go if");
+
     ctx.add_block(BlockType::Condition, &text);
-    ctx.block_vec
-        .push(CodeBlock::If(ctx.x_offset, ctx.y_offset, 100));
-    ctx.if_else_stack.push((ctx.x_offset, ctx.y_offset));
-    ctx.x_offset += 100;
+    //let text = handle_get_node_text(node, ctx);
+    dev_log!("push new if");
+    let new_context = IfElseContext {
+        start_x: ctx.x_offset,
+        start_y: ctx.y_offset,
+        depth: ctx.if_else_stack.len() as i32 + 1,
+        has_else: false,
+    };
+
+    ctx.if_else_stack.push(new_context);
+    ctx.block_vec.push(CodeBlock::If(ctx.x_offset, ctx.y_offset, 100));
+
+    dev_log!("multiple == {multiple}");
+    let shift_x = 100 * ctx.if_else_stack.len() as i32 * multiple;
+    ctx.x_offset += shift_x;
+    let for_return = ctx.x_offset - 2 * shift_x;
     ctx.y_offset += 100;
+    ctx.return_to_if.push([for_return, ctx.y_offset]);
 }
 
 fn handle_get_node_text(node: &Node, ctx: &Context) -> String {
@@ -338,106 +375,97 @@ fn handle_get_node_text(node: &Node, ctx: &Context) -> String {
 }
 
 fn handle_closing_brecket(node: &Node, ctx: &mut Context) {
-    ctx.add_empty_block();
     let text = handle_get_node_text(node, ctx);
-    println!("found closing brecket {text}");
-    println!("{:?}", ctx.block_vec.last());
-    println!("len of block mass = {}", ctx.block_vec.len());
+    //dev_log!("found closing brecket {text}");
+    //dev_log!("{:?}", ctx.block_vec.last());
+    //dev_log!("len of block mass = {}", ctx.block_vec.len());
+    let mut r#type = BlockType::End;
+    let mut push_text = String::new();
+    let mut create_new_block = false;
 
     match ctx.block_vec.last_mut().unwrap() {
-        CodeBlock::Return => {
-            println!("add return");
-            ctx.blocks.last_mut().unwrap().text = "Конец".to_string();
-            ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
-            //ctx.blocks.last_mut().unwrap()..x -= 200;
-            ctx.block_vec.pop();
-        }
-        CodeBlock::If(x, y, offset) => {
-            println!("Handling If block at {x}:{y}");
-            ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
-            //ctx.blocks.last_mut().unwrap()..text = format!("{x}:{y}");
-            ctx.blocks.last_mut().unwrap().text = "end if".to_string();
-            //let (x, y, offset) = block_vec.pop().unwrap();
-            ctx.y_if_max = ctx.y_offset;
-            //ctx.x_offset -= 100;
-            ctx.y_offset -= 100;
-            ctx.x_offset -= *offset;
+        CodeBlock::If(_x, _y, _offset) => {
+            if let Some(context) = ctx.if_else_stack.pop() {
+                ctx.y_if_max = ctx.y_offset.max(context.start_y);
+                ctx.x_offset = context.start_x;
+                ctx.y_offset = context.start_y + if context.has_else { 100 } else { 200 };
+                //ctx.return_to_if.push([context.start_y, );
+            }
             ctx.block_vec.pop();
         }
         CodeBlock::For(x, y) => {
-            println!("Handling For block at {x}:{y}");
-            ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
-            ctx.blocks.last_mut().unwrap().text = format!("{x}:{y}");
-            ctx.block_vec.pop();
+            //dev_log!("Handling For block at {x}:{y}");
+            push_text = format!("{x}:{y}");
+            create_new_block = true;
         }
         CodeBlock::While(x, y) => {
-            println!("Handling While block at {x}:{y}");
-            ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
-            ctx.blocks.last_mut().unwrap().text = format!("{x}:{y}");
+            //dev_log!("Handling While block at {x}:{y}");
+            push_text = format!("{x}:{y}");
             ctx.block_vec.pop();
+            create_new_block = true;
         }
         CodeBlock::Loop(x, y) => {
-            println!("Handling Loop block at {x}:{y}");
-            ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
-            ctx.blocks.last_mut().unwrap().text = format!("{x}:{y}");
+            //dev_log!("Handling Loop block at {x}:{y}");
+            push_text = format!("{x}:{y}");
             ctx.block_vec.pop();
+            create_new_block = true;
         }
         CodeBlock::Func => {
-            println!("Handling Func block");
-            ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
-            ctx.block_vec.pop();
+            //dev_log!("Handling Func block");
             if ctx.is_return {
-                ctx.is_return = false;
-                ctx.blocks.last_mut().unwrap().text = "drop".to_string();
-                println!("skip brecket");
-                //drop(*ctx.blocks.last_mut().unwrap().);
                 ctx.block_vec.pop();
+                ctx.blocks.pop();
+                return;
             }
-        }
-        CodeBlock::Continue => {
+            ctx.add_block(BlockType::End, "");
             ctx.block_vec.pop();
-            return;
         }
         CodeBlock::Match(back_x, _, count) => {
             if *count > 0 {
                 *count -= 1;
-                println!("skip pop");
-                ctx.blocks.last_mut().unwrap().r#type = BlockType::EndMatchArm;
+                //dev_log!("skip pop");
+                //ctx.blocks.last_mut().unwrap().r#type = BlockType::EndMatchArm;
+            create_new_block = true;
+                r#type = BlockType::EndMatchArm;
             } else {
                 ctx.x_offset = *back_x;
                 ctx.y_offset = ctx.y_if_max + 50;
                 ctx.block_vec.pop();
-                ctx.blocks.last_mut().unwrap().text = String::from("match");
-                ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
+                //ctx.blocks.last_mut().unwrap().text = String::from("match");
+                push_text = "match".to_string();
+                //ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
+            create_new_block = true;
             }
         }
-        CodeBlock::Else(_, _) => {
-            println!("pop else");
-            ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
-            ctx.blocks.last_mut().unwrap().text = "end else".to_string();
-            //ctx.blocks.last_mut().unwrap()..r#type = BlockType::End;
-            ctx.block_vec.pop();
-            //if_else_stack.pop();
-            if ctx.y_if_max > ctx.y_offset {
-                ctx.y_offset = ctx.y_if_max
+        CodeBlock::Else(_x, _y) => {
+            if let Some(context) = ctx.if_else_stack.pop() { // Явно извлекаем контекст
+                ctx.x_offset = context.start_x;
+                ctx.y_offset = ctx.y_if_max + 100;
             }
-            ctx.x_offset += 100;
+            ctx.block_vec.pop(); // Удаляем Else из block_vec
+            create_new_block = true;
         }
+    }
+    if create_new_block{
+        ctx.add_empty_block();
+        ctx.blocks.last_mut().unwrap().r#type = r#type;
+        ctx.blocks.last_mut().unwrap().text = push_text;
     }
 }
 
 fn handle_identifier(node: &Node, ctx: &mut Context) {
+    //dev_log!("handle_identifier");
     let text = node.utf8_text(ctx.source.as_ref()).unwrap_or_default();
 
     if text == "main" {
         ctx.add_block(BlockType::Start, "Начало");
         ctx.block_vec.push(CodeBlock::Func);
-        println!("push НАЧАЛО")
+        //dev_log!("push НАЧАЛО")
     } else {
-        println!("push {text}")
+        //dev_log!("push {text}")
     }
 
-    println!("{:?}", ctx.blocks);
+    //dev_log!("{:?}", ctx.blocks);
     ctx.y_offset += 100;
 }
 
@@ -449,42 +477,29 @@ fn handle_while_expression(node: &Node, ctx: &mut Context) {
     ctx.blocks.last_mut().unwrap().text = first_line;
     ctx.block_vec
         .push(CodeBlock::While(ctx.x_offset, ctx.y_offset));
-    //пока хз как себя поведет
-    if ctx.y_offset > ctx.y_if_max {
-        ctx.y_if_max = ctx.y_offset;
-    }
     ctx.blocks.last_mut().unwrap().r#type = BlockType::Cycle;
     ctx.skip_until_brace = true;
 }
 
 fn handle_loop_handler(_node: &Node, ctx: &mut Context) {
     ctx.add_empty_block();
-    println!("push loop");
+    //dev_log!("push loop");
     ctx.block_vec
         .push(CodeBlock::Loop(ctx.x_offset, ctx.y_offset));
-    //пока хз как себя поведет
-    if ctx.y_offset > ctx.y_if_max {
-        ctx.y_if_max = ctx.y_offset;
-    }
     ctx.blocks.last_mut().unwrap().r#type = BlockType::Cycle;
 }
 
 fn handle_for_expression(node: &Node, ctx: &mut Context) {
     ctx.add_empty_block();
-    println!("push for");
+    //dev_log!("push for");
     ctx.skip_until_brace = true;
     let text = handle_get_node_text(node, ctx);
     let mut first_line = text.lines().next().unwrap_or("").to_string();
     first_line.pop();
     ctx.blocks.last_mut().unwrap().text = first_line;
     ctx.blocks.last_mut().unwrap().r#type = BlockType::Cycle;
-    //пока хз как себя поведет
-    if ctx.y_offset > ctx.y_if_max {
-        ctx.y_if_max = ctx.y_offset;
-    }
     ctx.block_vec
         .push(CodeBlock::For(ctx.x_offset, ctx.y_offset));
-    //return;
 }
 
 fn handle_macro_invocation(node: &Node, ctx: &mut Context) {
@@ -498,37 +513,28 @@ fn handle_macro_invocation(node: &Node, ctx: &mut Context) {
         }
         ctx.blocks.last_mut().unwrap().r#type = BlockType::Print;
     }
-    println!(
-        "push ctx.blocks.last_mut().unwrap().\n{:?}\n",
+    dev_log!(
+        "push ctx.blocks\n{:?}\n",
         ctx.blocks.last_mut().unwrap()
     );
-    //ctx.blocks.push(ctx.blocks.last_mut().unwrap());
-    //пока хз как себя поведет
-    if ctx.y_offset > ctx.y_if_max {
-        ctx.y_if_max = ctx.y_offset;
-    }
     ctx.y_offset += 200;
 }
 
 fn handle_return_expression(node: &Node, ctx: &mut Context) {
-    ctx.is_return = true;
-    println!("push return");
-    /*if text.trim_start() == "return;" {
-        ctx.blocks.last_mut().unwrap()..text = "Конец".to_string();
-    } else {
-    }*/
+    let text = handle_get_node_text(node, ctx);
+    ctx.add_block(BlockType::End, &text);
+    if *ctx.block_vec.last().unwrap() != CodeBlock::Func {
+         ctx.is_return = true;
+    }
+    //dev_log!("push return");
     let text = handle_get_node_text(node, ctx);
     ctx.blocks.last_mut().unwrap().text = text;
+    ctx.blocks.last_mut().unwrap().y -= 100;
     ctx.blocks.last_mut().unwrap().r#type = BlockType::End;
-    //пока хз как себя поведет
-    if ctx.y_offset > ctx.y_if_max {
-        ctx.y_if_max = ctx.y_offset;
-    }
-    println!(
-        "push ctx.blocks.last_mut().unwrap().\n{:?}\n",
+    dev_log!(
+        "push ctx.blocks.last().\n{:?}\n",
         ctx.blocks.last_mut().unwrap()
     );
-    //ctx.blocks.push(ctx.blocks.last_mut().unwrap());
     ctx.y_offset += 100;
 }
 
@@ -537,39 +543,30 @@ fn handle_match_expression(node: &Node, ctx: &mut Context) {
     if text.matches("match").count() > 1 {
         panic!("incorrect use of macth")
     }
-    println!("push match");
+    //dev_log!("push match");
     let arrow_count = text.matches("=>").count();
-    /*let mut arrow_count = text.matches(&case_keyword).count();
-    if text.contains(&default_patetrn) {
-        arrow_count += 1;
-    }*/
     let inter_block_count = arrow_count - text.matches(",").count();
     ctx.block_vec.push(CodeBlock::Match(
-        ctx.x_offset,
-        ctx.y_offset + 100,
-        inter_block_count,
+            ctx.x_offset,
+            ctx.y_offset + 100,
+            inter_block_count,
     ));
-    ctx.x_offset -= (arrow_count * 150 as usize) as i32;
-    //block_vec.push(CodeBlock::Match(ctx.x_offset, ctx.y_offset));
+    ctx.x_offset -= (arrow_count * 150_usize) as i32;
     let mut first_line = text.lines().next().unwrap_or("").to_string();
     first_line.pop();
     ctx.blocks.last_mut().unwrap().text = first_line;
     ctx.blocks.last_mut().unwrap().r#type = BlockType::Condition;
-    //blocks.push(ctx.blocks.last_mut().unwrap().);
     ctx.y_offset -= 100;
 }
 
 fn handler_match_pattern(_node: &Node, ctx: &mut Context) {
     ctx.add_empty_block();
-    //возможно насрал, посмотрим по поведению
     if let Some(CodeBlock::Match(_, to_y, _)) = ctx.block_vec.last_mut() {
-        //*count -= 1;
         ctx.x_offset += 300;
         ctx.y_offset = *to_y;
     } else {
         for i in ctx.block_vec.iter_mut().rev() {
             if let CodeBlock::Match(_, to_y, _) = i {
-                //*count -= 1;
                 ctx.x_offset += 300;
                 ctx.y_offset = *to_y;
                 break;
@@ -578,8 +575,7 @@ fn handler_match_pattern(_node: &Node, ctx: &mut Context) {
     }
     ctx.blocks.last_mut().unwrap().x = ctx.x_offset;
     ctx.blocks.last_mut().unwrap().y = ctx.y_offset;
-    println!("push to blocks match");
-    println!("push local_block\n{:?}\n", ctx.blocks.last_mut().unwrap());
-    //blocks.push(local_block);
+    //dev_log!("push to blocks match");
+    //dev_log!("push local_block\n{:?}\n", ctx.blocks.last_mut().unwrap());
     ctx.y_offset += 100;
 }
