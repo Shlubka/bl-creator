@@ -1,598 +1,120 @@
 go into
 node is: source_file
-text: // Основная функция
-fn main() -> i32 {
-    if x > y {
-        if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-    } else if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
+text: fn add(a: i32, b: i32) -> i32 {
+    return a + b;
 }
 
 
+fn main() -> io::Result<()> {
+    for i in &vec {
+        println!("{}", i);
+    }
+
+}
+
+
+normal proces
+node is: function_item
+text: fn add(a: i32, b: i32) -> i32 {
+    return a + b;
+}
+
+handle_func
+push fn add(a: i32, b: i32) -> i32 {
+[LocalVecBlock { type: Start, text: "add", x: 0, y: 0 }]
 go into
 node is: function_item
-text: fn main() -> i32 {
-    if x > y {
-        if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-    } else if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
+text: fn add(a: i32, b: i32) -> i32 {
+    return a + b;
 }
 
 go into
 node is: fn
 text: fn
 
-normal proces
-node is: identifier
-text: main
-
-go into
-node is: identifier
-text: main
-
 go into
 node is: block
 text: {
-    if x > y {
-        if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-    } else if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
+    return a + b;
 }
 
 go into
 node is: expression_statement
-text: if x > y {
-        if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-    } else if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
+text: return a + b;
 
+skip children
+node is: return_expression
+text: return a + b
+
+push return
+push ctx.blocks.last().
+LocalVecBlock { type: End, text: "return a + b", x: 0, y: 0 }
+
+skip children
+node is: }
+text: }
+
+found closing brecket }
+Some(Func)
+len of block mass = 1
+Handling Func block
 normal proces
-node is: if_expression
-text: if x > y {
-        if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-    } else if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
+node is: function_item
+text: fn main() -> io::Result<()> {
+    for i in &vec {
+        println!("{}", i);
     }
 
-text == if x > y {
-        if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-    } else if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
-go if
-push new if
-multiple == 4
+}
+
+handle_func
+push НАЧАЛО
+[LocalVecBlock { type: Start, text: "add", x: 0, y: 0 }, LocalVecBlock { type: End, text: "return a + b", x: 0, y: 0 }, LocalVecBlock { type: End, text: "", x: 0, y: 200 }, LocalVecBlock { type: Start, text: "Начало", x: 0, y: 200 }]
 go into
-node is: if_expression
-text: if x > y {
-        if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-    } else if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
+node is: function_item
+text: fn main() -> io::Result<()> {
+    for i in &vec {
+        println!("{}", i);
     }
+
+}
+
+go into
+node is: fn
+text: fn
 
 go into
 node is: block
 text: {
-        if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
+    for i in &vec {
+        println!("{}", i);
     }
+
+}
 
 go into
 node is: expression_statement
-text: if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-
-normal proces
-node is: if_expression
-text: if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-
-text == if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-go if
-push new if
-multiple == 2
-go into
-node is: if_expression
-text: if x > y {
-            println!("x is greater than y");
-        } else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-
-go into
-node is: block
-text: {
-            println!("x is greater than y");
-        }
-
-go into
-node is: expression_statement
-text: println!("x is greater than y");
+text: for i in &vec {
+        println!("{}", i);
+    }
 
 skip children
-node is: macro_invocation
-text: println!("x is greater than y")
+node is: for_expression
+text: for i in &vec {
+        println!("{}", i);
+    }
 
-push ctx.blocks
-LocalVecBlock { type: Print, text: "Вывод строки", x: 800, y: 300 }
-
+push for
+Push new BlockType::Cycle
 skip children
 node is: }
 text: }
 
-normal proces
-node is: else_clause
-text: else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-
-go into
-node is: else_clause
-text: else if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-
-normal proces
-node is: else
-text: else
-
-create else info block
-go into
-node is: else
-text: else
-
-normal proces
-node is: if_expression
-text: if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-
-text == if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-go if
-push new if
-multiple == 1
-go into
-node is: if_expression
-text: if x < y {
-            println!("y is greater than x");
-        } else {
-            println!("y is = x");
-        }
-
-go into
-node is: block
-text: {
-            println!("y is greater than x");
-        }
-
-go into
-node is: expression_statement
-text: println!("y is greater than x");
-
-skip children
-node is: macro_invocation
-text: println!("y is greater than x")
-
-push ctx.blocks
-LocalVecBlock { type: Print, text: "Вывод строки", x: 200, y: 400 }
-
-skip children
-node is: }
-text: }
-
-normal proces
-node is: else_clause
-text: else {
-            println!("y is = x");
-        }
-
-go into
-node is: else_clause
-text: else {
-            println!("y is = x");
-        }
-
-normal proces
-node is: else
-text: else
-
-create else info block
-go into
-node is: else
-text: else
-
-go into
-node is: block
-text: {
-            println!("y is = x");
-        }
-
-go into
-node is: expression_statement
-text: println!("y is = x");
-
-skip children
-node is: macro_invocation
-text: println!("y is = x")
-
-push ctx.blocks
-LocalVecBlock { type: Print, text: "Вывод строки", x: -200, y: 400 }
-
-skip children
-node is: }
-text: }
-
-skip children
-node is: }
-text: }
-
-normal proces
-node is: else_clause
-text: else if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
-
-go into
-node is: else_clause
-text: else if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
-
-normal proces
-node is: else
-text: else
-
-create else info block
-go into
-node is: else
-text: else
-
-normal proces
-node is: if_expression
-text: if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
-
-text == if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
-go if
-push new if
-multiple == 1
-go into
-node is: if_expression
-text: if x < y {
-        println!("y is greater than x");
-    } else {
-        println!("y is = x");
-    }
-
-go into
-node is: block
-text: {
-        println!("y is greater than x");
-    }
-
-go into
-node is: expression_statement
-text: println!("y is greater than x");
-
-skip children
-node is: macro_invocation
-text: println!("y is greater than x")
-
-push ctx.blocks
-LocalVecBlock { type: Print, text: "Вывод строки", x: -300, y: 300 }
-
-skip children
-node is: }
-text: }
-
-normal proces
-node is: else_clause
-text: else {
-        println!("y is = x");
-    }
-
-go into
-node is: else_clause
-text: else {
-        println!("y is = x");
-    }
-
-normal proces
-node is: else
-text: else
-
-create else info block
-go into
-node is: else
-text: else
-
-go into
-node is: block
-text: {
-        println!("y is = x");
-    }
-
-go into
-node is: expression_statement
-text: println!("y is = x");
-
-skip children
-node is: macro_invocation
-text: println!("y is = x")
-
-push ctx.blocks
-LocalVecBlock { type: Print, text: "Вывод строки", x: -500, y: 300 }
-
-skip children
-node is: }
-text: }
-
-skip children
-node is: }
-text: }
-
-Final block vector: [
-    LocalVecBlock {
-        type: Start,
-        text: "Начало",
-        x: 0,
-        y: 0,
-    },
-    LocalVecBlock {
-        type: Condition,
-        text: "if x > y",
-        x: 0,
-        y: 100,
-    },
-    LocalVecBlock {
-        type: Condition,
-        text: "if x > y",
-        x: 400,
-        y: 200,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "Вывод строки",
-        x: 800,
-        y: 300,
-    },
-    LocalVecBlock {
-        type: Else,
-        text: "continue",
-        x: 0,
-        y: 300,
-    },
-    LocalVecBlock {
-        type: Condition,
-        text: "if x < y",
-        x: 0,
-        y: 300,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "Вывод строки",
-        x: 200,
-        y: 400,
-    },
-    LocalVecBlock {
-        type: Else,
-        text: "continue",
-        x: -200,
-        y: 400,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "Вывод строки",
-        x: -200,
-        y: 400,
-    },
-    LocalVecBlock {
-        type: End,
-        text: "",
-        x: 0,
-        y: 700,
-    },
-    LocalVecBlock {
-        type: Else,
-        text: "continue",
-        x: -400,
-        y: 200,
-    },
-    LocalVecBlock {
-        type: Condition,
-        text: "if x < y",
-        x: -400,
-        y: 200,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "Вывод строки",
-        x: -300,
-        y: 300,
-    },
-    LocalVecBlock {
-        type: Else,
-        text: "continue",
-        x: -500,
-        y: 300,
-    },
-    LocalVecBlock {
-        type: Print,
-        text: "Вывод строки",
-        x: -500,
-        y: 300,
-    },
-    LocalVecBlock {
-        type: End,
-        text: "",
-        x: -500,
-        y: 500,
-    },
-    LocalVecBlock {
-        type: End,
-        text: "",
-        x: -500,
-        y: 500,
-    },
+found closing brecket }
+Some(For(0, 300))
+len of block mass = 2
+Handling For block at 0:300
+!stack contents!
+[
+    Func,
 ]
-thish block ready for processing LocalVecBlock { type: Start, text: "Начало", x: 0, y: 0 }
-coords: x=0; y=0
-thish block ready for processing LocalVecBlock { type: Condition, text: "if x > y", x: 0, y: 100 }
-coords: x=0; y=100
-push iterator [1]
-push look_for if x > y
-thish block ready for processing LocalVecBlock { type: Condition, text: "if x > y", x: 400, y: 200 }
-coords: x=400; y=200
-push iterator [1, 2]
-push look_for if x > y
-thish block ready for processing LocalVecBlock { type: Print, text: "Вывод строки", x: 800, y: 300 }
-coords: x=800; y=300
-text in json block Вывод строки, iterator 3
-enter in check funk
-after check [-20, 0]
-thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: 0, y: 300 }
-coords: x=0; y=300
-thish block ready for processing LocalVecBlock { type: Condition, text: "if x < y", x: 0, y: 300 }
-coords: x=0; y=300
-push iterator [1, 2, 4]
-push look_for if x < y
-thish block ready for processing LocalVecBlock { type: Print, text: "Вывод строки", x: 200, y: 400 }
-coords: x=200; y=400
-text in json block Вывод строки, iterator 5
-enter in check funk
-after check [-30, 0]
-thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -200, y: 400 }
-coords: x=-200; y=400
-thish block ready for processing LocalVecBlock { type: Print, text: "Вывод строки", x: -200, y: 400 }
-coords: x=-200; y=400
-text in json block Вывод строки, iterator 6
-enter in check funk
-after check [-30, 0]
-thish block ready for processing LocalVecBlock { type: End, text: "", x: 0, y: 700 }
-coords: x=0; y=700
-thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -400, y: 200 }
-coords: x=-400; y=200
-thish block ready for processing LocalVecBlock { type: Condition, text: "if x < y", x: -400, y: 200 }
-coords: x=-400; y=200
-push iterator [1, 2, 4, 8]
-push look_for if x < y
-thish block ready for processing LocalVecBlock { type: Print, text: "Вывод строки", x: -300, y: 300 }
-coords: x=-300; y=300
-text in json block Вывод строки, iterator 9
-enter in check funk
-after check [-40, 0]
-thish block ready for processing LocalVecBlock { type: Else, text: "continue", x: -500, y: 300 }
-coords: x=-500; y=300
-thish block ready for processing LocalVecBlock { type: Print, text: "Вывод строки", x: -500, y: 300 }
-coords: x=-500; y=300
-text in json block Вывод строки, iterator 10
-enter in check funk
-after check [-40, 0]
-thish block ready for processing LocalVecBlock { type: End, text: "", x: -500, y: 500 }
-coords: x=-500; y=500
-thish block ready for processing LocalVecBlock { type: End, text: "", x: -500, y: 500 }
-coords: x=-500; y=500

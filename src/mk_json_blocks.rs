@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use serde_json::to_string_pretty;
 
-use crate::lang_vec_stuf::{BlockType, LocalVecBlock};
+use crate::lang_vec_stuf::{BlockType, CodeBlock};
 
 #[derive(Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]
